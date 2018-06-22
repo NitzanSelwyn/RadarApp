@@ -13,5 +13,20 @@ Navigate to the RadarAppClient folder and run the command `npm install` after th
 
 
 
+# Main technologies In The Project
+
+### Angular - 
+For the client - to be explained 
+
+### Node.js - 
+For the server - to be explained 
+
+### MongoDB -
+For the database - to be explained
+
+
+
+
+
 
 
