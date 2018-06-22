@@ -19,7 +19,7 @@ Navigate to the RadarAppClient folder and run the command `npm install` after th
 For the client - to be explained 
 
 ### Node.js - 
-For the server - In this project there are alot of request to diffrent APIs (mainly `Google Maps API`)
+For the server - In this project there are alot of request to diffrent APIs (mainly [`Google Maps API`](https://cloud.google.com/maps-platform/))
 
 ### MongoDB -
 For the database - to be explained
