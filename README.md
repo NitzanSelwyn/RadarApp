@@ -4,7 +4,7 @@
 
 ## Running The Project
 
-To run this project you will need `MongoDB` & `NodeJS` on your machine
+To run this project you will need [`MongoDB`](https://www.mongodb.com/download-center?jmp=nav#community) & [`NodeJS`](https://nodejs.org/en/) on your machine
 
 
 
