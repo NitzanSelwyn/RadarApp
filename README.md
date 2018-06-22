@@ -13,7 +13,7 @@ Navigate to the RadarAppClient folder and run the command `npm install` after th
 
 
 
-# Main technologies In The Project
+# Main Technologies In The Project
 
 ### Angular - 
 For the client - to be explained 
@@ -23,6 +23,10 @@ For the server - In this project there are alot of request to diffrent APIs (mai
 
 ### MongoDB -
 For the database - to be explained
+
+### Google Maps API - 
+In this project im using google map api to: 
+ - find current location of a user for other users will now where he is using google maps [`Geolocation API`](https://developers.google.com/maps/documentation/geolocation/intro)
 
 
 
