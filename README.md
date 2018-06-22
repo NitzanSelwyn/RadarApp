@@ -1,6 +1,6 @@
 # Running The Project
 
-To run this project you will need [`MongoDB(Community Server)`](https://www.mongodb.com/download-center?jmp=nav#community) & [`NodeJS`](https://nodejs.org/en/) on your machine
+To run this project you will need [`MongoDB(Community Server)`](https://www.mongodb.com/download-center?jmp=nav#community) & [`Node.js`](https://nodejs.org/en/) on your machine
 
 ### Running The MongoDB Server - 
 Open CMD and run the command `mongod` by defult it will listen on port `27017`
