@@ -1,27 +1,37 @@
-# RadarAppClient
+# Running The Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
+To run this project you will need [`MongoDB(Community Server)`](https://www.mongodb.com/download-center?jmp=nav#community) & [`Node.js`](https://nodejs.org/en/) on your machine
 
-## Development server
+### Running The MongoDB Server - 
+Open CMD and run the command `mongod` by defult it will listen on port `27017`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Running The Server -
+Navigate to the RadarAppServer folder and run the command `npm install` after that run the command `node server.js` to start the server
 
-## Code scaffolding
+### Running The Client - 
+Navigate to the RadarAppClient folder and run the command `npm install` after that run the command 'npm start' to start the client
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+# Main Technologies In The Project
 
-## Running unit tests
+### Angular - 
+For the client - to be explained 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Node.js - 
+For the server - In this project there are alot of request to diffrent APIs (mainly [`Google Maps API`](https://cloud.google.com/maps-platform/))
 
-## Running end-to-end tests
+### MongoDB -
+For the database - to be explained
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Google Maps API - 
+In this project im using google map api to: 
+ - Find current location of a user for other users will now where he is using google maps [`Geolocation API`](https://developers.google.com/maps/documentation/geolocation/intro)
+ - Styling the map using google maps [`Javascript API`](https://developers.google.com/maps/documentation/javascript/styling)
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+
+
