@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-registar',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistarComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(
+    private roter: Router
+  ) { }
+
+  OnInit() {
+
+
   }
-
-}
