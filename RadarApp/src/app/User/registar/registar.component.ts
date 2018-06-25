@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistarComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
