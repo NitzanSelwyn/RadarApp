@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
-import { AppRoutes } from "./app.routes";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Views/login/login.component';
 import { DashboardComponent } from './Views/dashboard/dashboard.component';
@@ -21,7 +20,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   ],
   imports: [
     BrowserModule,
-    AppRoutes,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule
