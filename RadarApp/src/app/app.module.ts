@@ -23,7 +23,8 @@ import { ApiService } from "./api.service";
     FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      { path: "register", component: RegisterComponent }
+      { path: "register", component: RegisterComponent },
+      { path: "login", component: LoginComponent }
     ])
   ],
   declarations: [

@@ -1,1 +1,18 @@
-Login Form
+<mat-card>
+    <mat-card-title>
+        Login
+    </mat-card-title>
+    <mat-card-content>
+        <form id="formData" #userData="ngForm" (ngSubmit)="Login(userData.value)">
+            <mat-form-field>
+                <input matInput placeholder="User Name" name="username" type="text" ngModel />
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput placeholder="Password" name="password" type="password" ngModel />
+            </mat-form-field>
+            <br>
+            <input type="submit" value="Login" mat-button/>
+        </form>
+    </mat-card-content>
+</mat-card>
