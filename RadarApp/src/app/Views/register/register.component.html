@@ -3,22 +3,23 @@
         Register New User
     </mat-card-title>
     <mat-card-content>
-        <form>
+        <form id="formData" #userData="ngForm" (ngSubmit)="registerUser(userData.value)">
             <mat-form-field>
                 <input matInput placeholder="First Name" name="firstname" type="text" ngModel />
             </mat-form-field>
-
+            <br>
             <mat-form-field>
-                <input matInput placeholder="Last Name" name="lasttname" type="text" ngModel />
+                <input matInput placeholder="Last Name" name="lastname" type="text" ngModel />
             </mat-form-field>
-
+            <br>
             <mat-form-field>
                 <input matInput placeholder="User Name" name="username" type="text" ngModel />
             </mat-form-field>
-
+            <br>
             <mat-form-field>
                 <input matInput placeholder="Password" name="password" type="password" ngModel />
             </mat-form-field>
+            <input type="submit" value="Register" mat-Button/>
         </form>
     </mat-card-content>
 </mat-card>

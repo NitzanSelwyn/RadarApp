@@ -11,6 +11,8 @@ import { LoginComponent } from './Views/login/login.component';
 import { RegisterComponent } from './Views/register/register.component';
 import { HeaderComponent } from './Views/header/header.component';
 
+import { ApiService } from "./api.service";
+
 
 @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import { HeaderComponent } from './Views/header/header.component';
     HeaderComponent,
 
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
