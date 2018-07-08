@@ -13,6 +13,10 @@ import { HeaderComponent } from './Views/header/header.component';
 
 import { ApiService } from "./api.service";
 
+const routes = [
+  { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
+];
 
 @NgModule({
   imports: [
@@ -22,10 +26,7 @@ import { ApiService } from "./api.service";
     RouterModule,
     FormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      { path: "register", component: RegisterComponent },
-      { path: "login", component: LoginComponent }
-    ])
+    RouterModule.forRoot(routes)
   ],
   declarations: [
     AppComponent,

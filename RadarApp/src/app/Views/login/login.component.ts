@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from "../../api.service";
 
 @Component({
   selector: 'app-login',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  constructor(private apiService: ApiService) { }
+  loginUser(user) {
+    this.apiService.loginUser(user);
+  }
 }
