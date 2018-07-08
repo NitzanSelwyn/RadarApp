@@ -1,28 +1,46 @@
 const userModel = require('./Model/user.model')
 const mongoose = require('mongoose');
+const express = require('express');
+const app = express();
 
-mongoose.connect('mongodb://localhost/mongo-LocationProj')
+const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationproject-vh41z.mongodb.net/test')
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could Not Connect', err));
 
-const userSchema = mongoose.Schema({
-    firstname: { type: String },
-    lastname: { type: String },
-    username: { type: String },
-    password: { type: String }
+
+
+
+
+app.set('port', process.env.process || 3000);
+
+app.get('/', (req, res) => {
+    res.send('hello');
 });
-const User = mongoose.model('Course', userSchema);
 
 
-async function CreateUser() {
-    const user = new User({
-        firstname: 'nitzan',
-        lastname: 'Selwyn',
-        username: 'nitzan',
-        password: '12345'
-    });
-    const res = await user.save();
-    console.log(res);
-}
+app.post('/register', (req, res) => {
+    const firstname = req.body.firstname;
+    const username = req.body.username;
+    const lastname = req.body.lastname;
+    const password = req.body.password;
 
-CreateUser();
+    const user = new userModel();
+    user.firstname = firstname;
+    user.lastname = lastname;
+    user.username = username;
+    user.password = password;
+
+    user.save((err, results) => {
+        if (err) {
+            console.log('Error in the DB');
+        }
+        res.sendStatus(200);
+    })
+
+});
+
+app.listen(app.get('port'), (err, res) => {
+    console.log("server is running");
+});
+
+
