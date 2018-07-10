@@ -26,9 +26,26 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events/:id', async (req, res) => {
-    var author = req.params.id;
-    var events = await postModel.find({ author });
-    req.send(events);
+    // var author = req.params.id;
+    // var events = await postModel.find({ author });
+    // req.send(events);
+    try {
+        let events = await postModel.findById(req.params.id);
+        res.send(events);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+app.get('/events', async (req, res) => {
+    try {
+        let events = await postModel.find({});
+        res.send(events);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
 });
 
 app.post('/event', (req, res) => {

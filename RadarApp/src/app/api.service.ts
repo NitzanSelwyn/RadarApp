@@ -61,6 +61,10 @@ export class ApiService {
     });
   }
 
+  getEventsDetails(id) {
+    return this.http.get<any>(this.path + '/events/' + id)
+  }
+
   createEvents(post) {
     this.http.post<any>(this.path + '/event', post).subscribe(res => {
       this.events = res;

@@ -1,5 +1,5 @@
-<div ngFor="let msg of apiService.events">
-  <mat-card>
-    Dosnet Work
+<div *ngFor="let eve of apiService.events">
+  <mat-card [routerLink]="['/events',eve._id]">
+    {{eve.title}}
   </mat-card>
 </div>

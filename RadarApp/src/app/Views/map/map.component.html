@@ -1,7 +1,26 @@
 <mat-card>
   <mat-card-content>
+    <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" (mapReady)="mapReady($event)">
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map> -->
+
+    <!-- <div *ngIf="lat && lng"> -->
+
     <agm-map [latitude]="lat" [longitude]="lng">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+
+      <agm-marker [latitude]="lat" [longitude]="lng">
+
+        <agm-info-window>
+          <h3>
+            <strong>Howdy!</strong>
+          </h3>
+          <p>You are here!</p>
+        </agm-info-window>
+
+      </agm-marker>
+
     </agm-map>
+
+    <!-- <div> -->
   </mat-card-content>
 </mat-card>
