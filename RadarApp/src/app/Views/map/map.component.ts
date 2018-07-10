@@ -14,14 +14,16 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.getUserLocation();
   }
 
   lat: number;
   lng: number;
 
+  startlat: number = 32.109333;
+  startlng: number = 34.855499;
 
-  private getUserLocation() {
+
+  getUserLocation() {
     /// locate the user
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {

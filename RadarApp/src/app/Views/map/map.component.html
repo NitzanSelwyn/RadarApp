@@ -3,10 +3,11 @@
     <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" (mapReady)="mapReady($event)">
       <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
     </agm-map> -->
-
+    <button mat-raised-button (click)="getUserLocation()" color="primary">Find My Location</button>
+  </mat-card-content>
+  <mat-card-content>
     <!-- <div *ngIf="lat && lng"> -->
-
-    <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-map [latitude]="startlat" [longitude]="startlng">
 
       <agm-marker [latitude]="lat" [longitude]="lng">
 
@@ -23,4 +24,5 @@
 
     <!-- <div> -->
   </mat-card-content>
+
 </mat-card>
