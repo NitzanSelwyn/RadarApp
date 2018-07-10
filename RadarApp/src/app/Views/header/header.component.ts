@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../api.service';
 
 
 @Component({
@@ -8,7 +9,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(private apiService: ApiService) { }
 
-
+  logout() {
+    this.apiService.logout();
+  }
 
 }

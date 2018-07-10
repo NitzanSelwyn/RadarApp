@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
     res.send('This is the SERVER');
 });
 
-app.get('/events:id', async (req, res) => {
+app.get('/events/:id', async (req, res) => {
     var author = req.params.id;
     var events = await postModel.find({ author });
     req.send(events);
@@ -39,7 +39,6 @@ app.post('/event', (req, res) => {
             console.error('saveing event err');
             res.send(500).send({ message: 'Saving Event Error' });
         }
-
         res.sendStatus(200);
     });
 });

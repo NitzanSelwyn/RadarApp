@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from "../api.service";
+import { ApiService } from "../../api.service";
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
@@ -12,7 +12,9 @@ export class EventComponent implements OnInit {
   ngOnInit() {
   }
 
-  post(post) {
-    this.apiService.createEvents(post);
+  eventMsg = '';
+  createEvent() {
+    //console.log(this.eventMsg)
+    this.apiService.createEvents({ title: this.eventMsg });
   }
 }

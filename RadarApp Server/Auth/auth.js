@@ -19,12 +19,15 @@ router.post('/register', (req, res) => {
     user.username = username;
     user.password = password;
 
-    user.save((err, results) => {
+    user.save((err, newUser) => {
         if (err) {
             res.send({ succses: "Filed to Add user", status: 500 });
             console.log('Error in the DB', err);
         }
-        res.send({ success: "Success", status: 200 });
+        let payload = { sub: newUser._id };
+        let token = jwt.encode(payload, '123')
+
+        res.status(200).send({ token });
     })
 });
 
@@ -43,7 +46,7 @@ router.post('/login', async (req, res) => {
             return res.status(401).send({ message: 'User Name Or Password Is Not Valid' })
         }
 
-        let payload = {};
+        let payload = { sub: user._id };
         let token = jwt.encode(payload, '123')
 
         res.status(200).send({ token });
