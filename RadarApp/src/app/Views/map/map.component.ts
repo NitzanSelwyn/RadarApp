@@ -27,10 +27,19 @@ export class MapComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+          else {
+            var newLat = place.geometry.location.lat();
+            var newLng = place.geometry.location.lng();
+            this.lat = newLat;
+            this.lng = newLng;
+          }
         });
       });
     });
   }
+
+  //private var geocoder = google.maps.Geocoder;
+
 
   lat: number;
   lng: number;
@@ -39,13 +48,17 @@ export class MapComponent implements OnInit {
   startlng: number = 34.855499;
 
 
+
+
+  getChosenLoction() {
+  }
+
   getUserLocation() {
     /// locate the user
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-
       });
 
     }
