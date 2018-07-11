@@ -48,7 +48,8 @@ const routes = [
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase, 'raderapp'),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8'
+      apiKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8',
+      libraries: ["places"],
     }),
   ],
   declarations: [

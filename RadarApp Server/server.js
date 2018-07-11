@@ -48,8 +48,14 @@ app.get('/events', async (req, res) => {
     }
 });
 
-app.post('/event', (req, res) => {
+
+app.post('/event', async (req, res) => {
     var event = new postModel(req.body);
+
+    // var author = '5b427fc6e63de147b8423b1d';
+    // event.author = await postModel.find({ author });
+    //req.send(events)
+    // var event = new postModel(data)
 
     event.save((err, results) => {
         if (err) {
