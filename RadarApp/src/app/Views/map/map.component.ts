@@ -1,4 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { ApiService } from "../../api.service";
+
 
 import { MapsAPILoader } from '@agm/core';
 import { } from "@types/googlemaps";
@@ -12,10 +14,16 @@ import { } from "@types/googlemaps";
 })
 export class MapComponent implements OnInit {
 
-  constructor(private mapsAPI: MapsAPILoader, private ngZone: NgZone) { }
+
+
+
+  constructor(private mapsAPI: MapsAPILoader, private ngZone: NgZone, private apiService: ApiService) {
+
+  }
 
 
   @ViewChild('search') public searchElemnt: ElementRef;
+
 
   ngOnInit() {
     this.mapsAPI.load().then(() => {
@@ -32,13 +40,15 @@ export class MapComponent implements OnInit {
             var newLng = place.geometry.location.lng();
             this.lat = newLat;
             this.lng = newLng;
+            // this.markersArr = [{ newLat, newLng }]
           }
         });
       });
     });
-  }
 
-  //private var geocoder = google.maps.Geocoder;
+    this.apiService.getEvents();
+
+  }
 
 
   lat: number;
@@ -49,9 +59,6 @@ export class MapComponent implements OnInit {
 
 
 
-
-  getChosenLoction() {
-  }
 
   getUserLocation() {
     /// locate the user

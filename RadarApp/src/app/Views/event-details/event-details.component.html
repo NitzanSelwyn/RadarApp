@@ -7,6 +7,28 @@
   <mat-card-content>
     <mat-list>
       <mat-list-item> Title: {{newEvent?.title}}</mat-list-item>
+      <mat-list-item> Description: {{newEvent?.description}}</mat-list-item>
+      <mat-list-item> Date: {{newEvent?.date}}</mat-list-item>
+      <mat-list-item> Time: {{newEvent?.time}}</mat-list-item>
+      <mat-list-item> Location:</mat-list-item>
     </mat-list>
   </mat-card-content>
+</mat-card>
+<mat-card>
+
+  <mat-card-content>
+    <!-- <div *ngIf="lat && lng"> -->
+    <agm-map [zoom]="13" [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng">
+      <agm-marker [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng">
+        <agm-info-window>
+          <h3>
+            <strong>{{newEvent?.title}}</strong>
+          </h3>
+          <p>{{newEvent?.description}}</p>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+    <!-- <div> -->
+  </mat-card-content>
+
 </mat-card>

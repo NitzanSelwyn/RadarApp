@@ -3,6 +3,8 @@ const express = require('express');
 const bodyparser = require('body-parser')
 const app = express();
 const cors = require('cors');
+const jwt = require('jwt-simple');
+
 
 const postModel = require('./Model/post.model')
 const userModel = require('./Model/user.model')
@@ -49,18 +51,31 @@ app.get('/events', async (req, res) => {
 });
 
 
-app.post('/event', async (req, res) => {
-    var event = new postModel(req.body);
+app.post('/event', (req, res) => {
 
-    // var author = '5b427fc6e63de147b8423b1d';
-    // event.author = await postModel.find({ author });
-    //req.send(events)
-    // var event = new postModel(data)
+    const title = req.body.title;
+    const description = req.body.description;
+    const time = req.body.time
+    const date = req.body.date;
+    const location = req.body.location;
+
+    var event = new postModel();
+
+    event.description = description;
+    event.title = title;
+    event.time = time;
+    event.date = date
+    event.location = location;
+    // var authorization = req.body.author;
+    // var decoded = jwt.decode(authorization, 'token')
+    // var author = decoded.author;
+
+
 
     event.save((err, results) => {
         if (err) {
             console.error('saveing event err');
-            res.send(500).send({ message: 'Saving Event Error' });
+            res.sendStatus(500);
         }
         res.sendStatus(200);
     });
