@@ -15,37 +15,34 @@ import { } from "@types/googlemaps";
 export class MapComponent implements OnInit {
 
 
-
-
-  constructor(private mapsAPI: MapsAPILoader, private ngZone: NgZone, private apiService: ApiService) {
-
-  }
+  constructor(private mapsAPI: MapsAPILoader, private ngZone: NgZone, private apiService: ApiService) { }
 
 
   @ViewChild('search') public searchElemnt: ElementRef;
 
 
   ngOnInit() {
-    this.mapsAPI.load().then(() => {
-      let autoComplete = new google.maps.places.Autocomplete(this.searchElemnt.nativeElement, { types: ["address"] });
-      autoComplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autoComplete.getPlace();
+    // this.mapsAPI.load().then(() => {
+    //   let autoComplete = new google.maps.places.Autocomplete(this.searchElemnt.nativeElement, { types: ["address"] });
+    //   autoComplete.addListener("place_changed", () => {
+    //     this.ngZone.run(() => {
+    //       let place: google.maps.places.PlaceResult = autoComplete.getPlace();
 
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-          else {
-            var newLat = place.geometry.location.lat();
-            var newLng = place.geometry.location.lng();
-            this.lat = newLat;
-            this.lng = newLng;
-            // this.markersArr = [{ newLat, newLng }]
-          }
-        });
-      });
-    });
+    //       if (place.geometry === undefined || place.geometry === null) {
+    //         return;
+    //       }
+    //       else {
+    //         var newLat = place.geometry.location.lat();
+    //         var newLng = place.geometry.location.lng();
+    //         this.lat = newLat;
+    //         this.lng = newLng;
+    //         // this.markersArr = [{ newLat, newLng }]
+    //       }
+    //     });
+    //   });
+    // });
 
+    this.getUserLocation();
     this.apiService.getEvents();
 
   }

@@ -1,22 +1,29 @@
 <mat-card>
-  <div class="example-container">
+  <!-- <div class="example-container">
     <mat-form-field>
       <input matInput type="text" placeholder="Search For Location" #search/>
     </mat-form-field>
   </div>
   <mat-card-content>
     <button mat-raised-button (click)="getUserLocation()" color="primary">Find My Location</button>
-  </mat-card-content>
+  </mat-card-content> -->
   <div>
 
     <mat-card-content>
       <agm-map [latitude]="startlat" [longitude]="startlng">
+        <agm-marker [latitude]="eve?.location.lat" [longitude]="eve?.location.lng" *ngFor="let eve of apiService.events">
+          <agm-info-window>
+            <h3>
+              <strong>{{eve.title}}</strong>
+            </h3>
+            <p>{{eve.description}}</p>
+          </agm-info-window>
+        </agm-marker>
         <agm-marker [latitude]="lat" [longitude]="lng">
           <agm-info-window>
             <h3>
-              <strong>Howdy!</strong>
+              <strong>Current Location</strong>
             </h3>
-            <p>You are here!</p>
           </agm-info-window>
         </agm-marker>
       </agm-map>
