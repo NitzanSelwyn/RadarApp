@@ -10,7 +10,7 @@
   <div>
 
     <mat-card-content>
-      <agm-map [latitude]="startlat" [longitude]="startlng">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
         <agm-marker [latitude]="eve?.location.lat" [longitude]="eve?.location.lng" *ngFor="let eve of apiService.events">
           <agm-info-window>
             <h3>
@@ -25,6 +25,8 @@
               <strong>Current Location</strong>
             </h3>
           </agm-info-window>
+          <agm-circle [latitude]="lat" [longitude]="lng" [radius]="2000" [fillColor]="'red'" [circleDraggable]="false" [editable]="false">
+          </agm-circle>
         </agm-marker>
       </agm-map>
     </mat-card-content>
