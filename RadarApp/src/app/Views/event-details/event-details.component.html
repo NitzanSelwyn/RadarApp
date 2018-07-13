@@ -18,13 +18,12 @@
 
   <mat-card-content>
     <!-- <div *ngIf="lat && lng"> -->
-    <agm-map [zoom]="13" [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng">
+    <agm-map [zoom]="17" [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng">
       <agm-marker [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng">
         <agm-info-window>
           <h3>
-            <strong>{{newEvent?.title}}</strong>
+            <strong>Your Event Is Here</strong>
           </h3>
-          <p>{{newEvent?.description}}</p>
         </agm-info-window>
       </agm-marker>
     </agm-map>

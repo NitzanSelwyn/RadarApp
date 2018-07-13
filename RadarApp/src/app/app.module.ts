@@ -4,7 +4,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule } from "@angular/material";
+import {
+  MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule,
+  MatCheckboxModule, MatDatepickerModule, MatNativeDateModule
+} from "@angular/material";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Views/login/login.component';

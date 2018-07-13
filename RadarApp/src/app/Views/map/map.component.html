@@ -17,6 +17,7 @@
               <strong>{{eve.title}}</strong>
             </h3>
             <p>{{eve.description}}</p>
+            <p>{{eve.location.lat}} , {{eve.location.lng}}</p>
           </agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="lat" [longitude]="lng">

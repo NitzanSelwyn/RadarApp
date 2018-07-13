@@ -63,7 +63,6 @@ export class EventComponent implements OnInit {
   }
 
   createEvent() {
-
     this.apiService.createEvents({
       title: this.eventTitle, description: this.eventDescription,
       time: this.eventTime, date: this.eventDate,
