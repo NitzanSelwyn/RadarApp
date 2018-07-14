@@ -14,16 +14,17 @@
         <agm-marker [latitude]="eve?.location.lat" [longitude]="eve?.location.lng" *ngFor="let eve of apiService.events">
           <agm-info-window>
             <h3>
-              <strong>{{eve.title}}</strong>
+              <strong>Title: {{eve.title}}</strong>
             </h3>
-            <p>{{eve.description}}</p>
-            <p>{{eve.location.lat}} , {{eve.location.lng}}</p>
+            <p>Description: {{eve.description}}</p>
+            <p>Location: {{eve.location.lat}} , {{eve.location.lng}}</p>
           </agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="lat" [longitude]="lng">
           <agm-info-window>
             <h3>
               <strong>Current Location</strong>
+              <p>Adress: {{city}}</p>
             </h3>
           </agm-info-window>
           <agm-circle [latitude]="lat" [longitude]="lng" [radius]="2000" [fillColor]="'red'" [circleDraggable]="false" [editable]="false">
