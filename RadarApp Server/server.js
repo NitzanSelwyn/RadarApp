@@ -58,6 +58,7 @@ app.post('/event', (req, res) => {
     const time = req.body.time
     const date = req.body.date;
     const location = req.body.location;
+    const address = req.body.address;
 
     var event = new postModel();
 
@@ -66,6 +67,7 @@ app.post('/event', (req, res) => {
     event.time = time;
     event.date = date
     event.location = location;
+    event.address = address;
     // var authorization = req.body.author;
     // var decoded = jwt.decode(authorization, 'token')
     // var author = decoded.author;

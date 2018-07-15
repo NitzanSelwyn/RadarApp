@@ -35,6 +35,7 @@ export class EventComponent implements OnInit {
             var newLng = place.geometry.location.lng();
             this.lat = newLat;
             this.lng = newLng;
+            this.address = place.formatted_address;
           }
         });
       });
@@ -43,6 +44,8 @@ export class EventComponent implements OnInit {
 
 
   }
+
+  address: string
 
   lat: Number;
   lng: Number;
@@ -67,6 +70,7 @@ export class EventComponent implements OnInit {
       title: this.eventTitle, description: this.eventDescription,
       time: this.eventTime, date: this.eventDate,
       location: { lat: this.lat, lng: this.lng },
+      address: this.address,
     });
   }
 
