@@ -60,6 +60,11 @@ app.post('/event', (req, res) => {
     const location = req.body.location;
     const address = req.body.address;
 
+    // var authorization = req.body.author;
+    // var decoded = jwt.decode(authorization, 'token')
+    // var author = decoded.author;
+
+
     var event = new postModel();
 
     event.description = description;
@@ -68,11 +73,8 @@ app.post('/event', (req, res) => {
     event.date = date
     event.location = location;
     event.address = address;
-    // var authorization = req.body.author;
-    // var decoded = jwt.decode(authorization, 'token')
-    // var author = decoded.author;
 
-
+    // event.author = author;
 
     event.save((err, results) => {
         if (err) {

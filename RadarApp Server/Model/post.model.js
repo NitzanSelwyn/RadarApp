@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const user = require('./user.model');
 
 module.exports = mongoose.model('Event', {
     title: String,
@@ -7,5 +8,6 @@ module.exports = mongoose.model('Event', {
     date: String,
     location: { lat: Number, lng: Number },
     address: String,
-    author: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+    author: { type: String },
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
 });

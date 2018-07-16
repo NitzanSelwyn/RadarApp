@@ -16,14 +16,7 @@ import { MapsAPILoader } from '@agm/core';
 export class MapComponent implements OnInit {
 
 
-  constructor(private mapsAPI: MapsAPILoader, private ngZone: NgZone, private apiService: ApiService) {
-
-  }
-
-
-
-  //@ViewChild('search') public searchElemnt: ElementRef;
-
+  constructor(private mapsAPI: MapsAPILoader, private ngZone: NgZone, private apiService: ApiService) { }
 
   ngOnInit() {
     this.getUserLocation();
@@ -38,22 +31,16 @@ export class MapComponent implements OnInit {
   lat: number;
   lng: number;
 
-  startlat: number = 32.109333;
-  startlng: number = 34.855499;
+  // startlat: number = 32.109333;
+  // startlng: number = 34.855499;
+  // google: any;
 
-  city = '';
-  google: any;
-
-
-  setTheAddress(str: string) {
-    this.city = str;
-  }
+  city: any;
 
 
 
   //Reverse Geocoding To Find "Human" Address
-  reverseGeocoding(lat: number, lng: number): string {
-    var addressResults;
+  reverseGeocoding(lat: number, lng: number) {
 
     let geocoder = new google.maps.Geocoder();
     let latlng = new google.maps.LatLng(lat, lng);
@@ -63,14 +50,12 @@ export class MapComponent implements OnInit {
     geocoder.geocode(request, (results, status) => {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0] != null) {
-          //console.log(results[0].address_components[results[0].address_components.length - 4].short_name);
-          // addressResults = results[0].address_components[results[0].address_components.length - 4].short_name;
-          console.log(results[0].formatted_address);
-          addressResults = results[0].formatted_address;
+
+          this.city = results[0].formatted_address;
         }
       }
     });
-    return addressResults;
+
   }
 
   getUserLocation() {
@@ -79,18 +64,21 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        this.setTheAddress(this.reverseGeocoding(this.lat, this.lng));
+        parseFloat(this.lat.toString());
+        parseFloat(this.lat.toString());
+
+        this.reverseGeocoding(this.lat, this.lng)
       });
     }
   }
 }
 
 
-interface marker {
+// interface marker {
 
-  latitude: number;
-  longitude: number;
-}
+//   latitude: number;
+//   longitude: number;
+// }
 
 
 

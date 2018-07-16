@@ -6,7 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
   MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule,
-  MatCheckboxModule, MatDatepickerModule, MatNativeDateModule
+  MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule
 } from "@angular/material";
 
 import { AppComponent } from './app.component';
@@ -41,7 +41,7 @@ const routes = [
 @NgModule({
   imports: [
     MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule,
-    MatDatepickerModule, MatNativeDateModule,
+    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule,
     BrowserModule,
     HttpClientModule,
     RouterModule,

@@ -1,7 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ApiService } from "../../api.service";
 import { postModel } from "../../Model/post.model";
 import { Time } from '@angular/common';
+
+
 
 import { MapsAPILoader } from '@agm/core';
 import { } from "@types/googlemaps";
@@ -13,10 +17,17 @@ import { } from "@types/googlemaps";
 })
 export class EventComponent implements OnInit {
 
+  form: FormGroup;
   public model: postModel;
-  constructor(private apiService: ApiService, private mapsAPI: MapsAPILoader, private ngZone: NgZone) {
 
+  addressControl = new FormControl('', [Validators.required])
+  constructor(private apiService: ApiService, private mapsAPI: MapsAPILoader, private ngZone: NgZone) {
+    this.eventAuthor = this.apiService.toekn;
   }
+
+  // getErrorMessage() {
+  //   return this.addressControl.hasError('required') ? 'You must enter a value' : '';
+  // }
 
   @ViewChild('search') public searchElemnt: ElementRef;
 
@@ -41,8 +52,13 @@ export class EventComponent implements OnInit {
       });
     });
 
-
-
+    // this.form = this.formBuilder.group({
+    //   eventTitle: [null, Validators.required],
+    //   eventDate: [null, Validators.required],
+    //   address: [null, Validators.required],
+    //   lat: [null, Validators.required],
+    //   lng: [null, Validators.required],
+    // });
   }
 
   address: string
@@ -54,7 +70,13 @@ export class EventComponent implements OnInit {
   eventDescription = '';
   eventDate: Date;
   eventTime: Time;
+  eventAuthor: String;
+  minDate = new Date(Date.now());
 
+
+  addEvent(event: MatDatepickerInputEvent<Date>) {
+    this.eventDate = event.value;
+  }
 
   disabled: boolean = true;
   changedEvent(event) {
@@ -65,14 +87,45 @@ export class EventComponent implements OnInit {
     }
   }
 
+
   createEvent() {
+    // if (this.form.valid) {
     this.apiService.createEvents({
       title: this.eventTitle, description: this.eventDescription,
       time: this.eventTime, date: this.eventDate,
       location: { lat: this.lat, lng: this.lng },
       address: this.address,
+      author: this.eventAuthor,
+
     });
+    //   console.log('form submitted');
+    // } else {
+    //     this.validateAllFormFields(this.form);
+    //   }
   }
+
+  // validateAllFormFields(formGroup: FormGroup) {
+  //   Object.keys(formGroup.controls).forEach(field => {
+  //     console.log(field);
+  //     const control = formGroup.get(field);
+  //     if (control instanceof FormControl) {
+  //       control.markAsTouched({ onlySelf: true });
+  //     } else if (control instanceof FormGroup) {
+  //       this.validateAllFormFields(control);
+  //     }
+  //   });
+  // }
+
+  // isFieldValid(field: string) {
+  //   return !this.form.get(field).valid && this.form.get(field).touched;
+  // }
+
+  // displayFieldCss(field: string) {
+  //   return {
+  //     'has-error': this.isFieldValid(field),
+  //     'has-feedback': this.isFieldValid(field)
+  //   };
+  // }
 
 }
 

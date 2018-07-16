@@ -8,8 +8,8 @@
               <strong>Title: {{eve.title}}</strong>
             </h3>
             <p>Description: {{eve.description}}</p>
-            <!-- <p>Location: {{eve.location.lat}} , {{eve.location.lng}}</p> -->
             <p>Address: {{eve.address}}</p>
+            <button mat-raised-button color="primary" [routerLink]="['/events',eve._id]">More Details</button>
           </agm-info-window>
         </agm-marker>
         <agm-marker [latitude]="lat" [longitude]="lng">

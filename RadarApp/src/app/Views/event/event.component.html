@@ -5,29 +5,30 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="example-form">
+    <form class="example-form" name="myForm">
       <mat-form-field style="width: 100%">
         <textarea matInput [(ngModel)]="eventTitle" name="title" placeholder="Event Title"></textarea>
       </mat-form-field>
       <mat-form-field style="width: 100%">
         <textarea matInput [(ngModel)]="eventDescription" name="description" placeholder="Event Description"></textarea>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput type="date" name="date" placeholder="Choose a date" [(ngModel)]="eventDate" />
-        <!-- <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="eventDate">
+      <mat-form-field class="example-full-width">
+        <!-- <input matInput type="date" name="date" placeholder="Choose a date" [(ngModel)]="eventDate" /> -->
+        <input matInput [matDatepicker]="picker" time="false" [min]="minDate" (dateInput)="addEvent($event)" (dateChange)="addEvent($event)"
+          disabled placeholder="Pick A Date For Your Event">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> -->
+        <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <input matInput [(ngModel)]="eventTime" type="time" name="time" placeholder="Event Time" />
       </mat-form-field>
       <br>
-      <input type="checkbox" (change)="changedEvent($event)" placeholder="Is Your Event Not In Your Current Location" />
-
+      <!-- <input type="checkbox" (change)="changedEvent($event)" placeholder="Is Your Event Not In Your Current Location" /> -->
       <!-- <mat-checkbox [(ngModel)]="disabled">Is Your Event Not In Your Current Location</mat-checkbox> -->
       <br>
       <mat-form-field style="width: 100%">
-        <input matInput type="text" placeholder="Search For Location" #search [disabled]="disabled" />
+        <input matInput type="text" placeholder="Search For Location" #search />
+        <!-- <mat-error *ngIf="addressControl.invalid">{{getErrorMessage()}}</mat-error> -->
       </mat-form-field>
       <br>
       <button mat-raised-button type="button" (click)="createEvent()" [routerLink]="['/']" color="primary">Post</button>
