@@ -1,0 +1,9 @@
+agm-map {
+    height: 300px;
+  }
+
+
+  .example-container {
+    display: flex;
+    flex-direction: column;
+  }

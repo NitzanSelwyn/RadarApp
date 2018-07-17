@@ -1,0 +1,31 @@
+<mat-card>
+  <div>
+    <mat-card-content>
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13" [style]="styles">
+        <!-- [hidden]="calculate(eve?.location.lat,eve?.location.lng)" -->
+        <ng-container *ngFor="let eve of apiService.events">
+          <agm-marker [latitude]="eve?.location.lat" [longitude]="eve?.location.lng" *ngIf="calculate(eve.location.lat,eve.location.lng)">
+            <agm-info-window>
+              <h3>
+                <strong>Title: {{eve.title}}</strong>
+              </h3>
+              <p>Description: {{eve.description}}</p>
+              <p>Address: {{eve.address}}</p>
+              <button mat-raised-button color="primary" [routerLink]="['/events',eve._id]">More Details</button>
+            </agm-info-window>
+          </agm-marker>
+        </ng-container>
+        <agm-marker [latitude]="lat" [longitude]="lng">
+          <agm-info-window>
+            <h3>
+              <strong>Current Location</strong>
+              <p>Adress: {{city}}</p>
+            </h3>
+          </agm-info-window>
+          <agm-circle [latitude]="lat" [longitude]="lng" [radius]="2000" [fillColor]="'black'" [circleDraggable]="false" [editable]="false">
+          </agm-circle>
+        </agm-marker>
+      </agm-map>
+    </mat-card-content>
+  </div>
+</mat-card>

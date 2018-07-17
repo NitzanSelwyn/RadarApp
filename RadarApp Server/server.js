@@ -1,39 +1,100 @@
-require('rootpath')();
+const mongoose = require('mongoose');
 const express = require('express');
+const bodyparser = require('body-parser')
 const app = express();
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var expressJwt = require('express-jwt');
-var config = require('config.json');
+const cors = require('cors');
+const jwt = require('jwt-simple');
 
-const morgan = require('morgan');
-const helmet = require('helmet');
-const users = require('./routes/users');
 
-app.use(expressJwt({
-    secret: config.secret,
-    getToken: (req) => {
-        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            return req.headers.authorization.split(' ')[1];
-        } else if (req.query && req.query.token) {
-            return req.query.token;
-        }
-        return null;
+const postModel = require('./Model/post.model')
+const userModel = require('./Model/user.model')
+
+const auth = require('./Auth/auth')
+
+
+const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationproject-vh41z.mongodb.net/test')
+    .then(() => console.log('Connected to MongoDB...'))
+    .catch(err => console.error('Could Not Connect', err));
+
+
+
+app.use(cors());
+app.use(bodyparser.json())
+
+app.set('port', process.env.process || 3000);
+
+app.get('/', (req, res) => {
+    res.send('This is the SERVER');
+});
+
+app.get('/events/:id', async (req, res) => {
+    // var author = req.params.id;
+    // var events = await postModel.find({ author });
+    // req.send(events);
+    try {
+        let events = await postModel.findById(req.params.id);
+        res.send(events);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
     }
-}).unless({ path: ['/users/authenticate', '/users/register'] }));
+});
 
-//routes
-app.use('/users', users);
-//error handling
-app.use((err, req, res, next) => {
-    if (err.name == 'UnauthorizedError') {
-        return res.status(401).send('Invalid Token');
-    } else {
-        throw err;
+app.get('/events', async (req, res) => {
+    try {
+        let events = await postModel.find({});
+        res.send(events);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
     }
 });
 
 
-const port = process.env.PORT || 4666;
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.post('/event', (req, res) => {
+
+    const title = req.body.title;
+    const description = req.body.description;
+    const time = req.body.time
+    const date = req.body.date;
+    const location = req.body.location;
+    const address = req.body.address;
+
+    // var authorization = req.body.author;
+    // var decoded = jwt.decode(authorization, 'token')
+    // var author = decoded.author;
+
+
+    var event = new postModel();
+
+    event.description = description;
+    event.title = title;
+    event.time = time;
+    event.date = date
+    event.location = location;
+    event.address = address;
+
+    // event.author = author;
+
+    event.save((err, results) => {
+        if (err) {
+            console.error('saveing event err');
+            res.sendStatus(500);
+        }
+        res.sendStatus(200);
+    });
+});
+
+
+
+// app.post('/register', auth.register);
+
+// app.post('/login', auth.login);
+
+app.use('/auth', auth);
+
+app.listen(app.get('port'), (err, res) => {
+    console.log("server is running");
+});
+
 
