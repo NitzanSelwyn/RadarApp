@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ApiService } from "../../api.service";
 import { postModel } from "../../Model/post.model";
@@ -17,7 +17,22 @@ import { } from "@types/googlemaps";
 })
 export class EventComponent implements OnInit {
 
-  form: FormGroup;
+  // form = new FormGroup({
+  //   eventDate: new FormControl('',
+  //     Validators.required),
+
+  //   eventDescription: new FormControl('',
+  //     Validators.required),
+
+  //   eventTitle: new FormControl('',
+  //     Validators.required),
+
+  //   eventTime: new FormControl('',
+  //     Validators.required),
+
+  //   address: new FormControl('',
+  //     Validators.required),
+  // });
   public model: postModel;
 
   addressControl = new FormControl('', [Validators.required])
@@ -89,7 +104,7 @@ export class EventComponent implements OnInit {
 
 
   createEvent() {
-    // if (this.form.valid) {
+
     this.apiService.createEvents({
       title: this.eventTitle, description: this.eventDescription,
       time: this.eventTime, date: this.eventDate,
@@ -98,10 +113,12 @@ export class EventComponent implements OnInit {
       author: this.eventAuthor,
 
     });
-    //   console.log('form submitted');
-    // } else {
-    //     this.validateAllFormFields(this.form);
-    //   }
+    // let isValid = this.apiService.createEvents(this.form.value);
+    // if (!isValid) {
+    //   this.form.setErrors({
+    //     invalidSubmit: true;
+    //   })
+    // }
   }
 
   // validateAllFormFields(formGroup: FormGroup) {

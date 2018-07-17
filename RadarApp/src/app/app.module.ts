@@ -29,6 +29,8 @@ import { MapComponent } from './Views/map/map.component';
 import { GetEventsComponent } from './Views/get-events/get-events.component';
 import { EventDetailsComponent } from './Views/event-details/event-details.component';
 
+import { mapstyles } from "./Views/map/map.style";
+
 const routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
@@ -71,7 +73,7 @@ const routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true,
-  }, AuthService],
+  }, AuthService, mapstyles],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

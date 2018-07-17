@@ -5,12 +5,15 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form class="example-form" name="myForm">
+    <!-- #eventForm="ngForm" (submit)="createEvent(eventForm)" -->
+    <form class="example-form">
       <mat-form-field style="width: 100%">
         <textarea matInput [(ngModel)]="eventTitle" name="title" placeholder="Event Title"></textarea>
+        <!-- <mat-error *ngIf="eventDescription.invalid">Please Enter A Valid Form</mat-error> -->
       </mat-form-field>
       <mat-form-field style="width: 100%">
         <textarea matInput [(ngModel)]="eventDescription" name="description" placeholder="Event Description"></textarea>
+        <!-- <mat-error *ngIf="eventDescription.invalid">Please Enter A Valid Form</mat-error> -->
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <!-- <input matInput type="date" name="date" placeholder="Choose a date" [(ngModel)]="eventDate" /> -->
@@ -21,6 +24,7 @@
       </mat-form-field>
       <mat-form-field>
         <input matInput [(ngModel)]="eventTime" type="time" name="time" placeholder="Event Time" />
+        <!-- <mat-error *ngIf="eventTime.invalid">Please Enter A Valid Form</mat-error> -->
       </mat-form-field>
       <br>
       <!-- <input type="checkbox" (change)="changedEvent($event)" placeholder="Is Your Event Not In Your Current Location" /> -->
@@ -28,10 +32,11 @@
       <br>
       <mat-form-field style="width: 100%">
         <input matInput type="text" placeholder="Search For Location" #search />
-        <!-- <mat-error *ngIf="addressControl.invalid">{{getErrorMessage()}}</mat-error> -->
+        <!-- <mat-error *ngIf="search.invalid">Please Enter A Valid Form</mat-error> -->
       </mat-form-field>
       <br>
-      <button mat-raised-button type="button" (click)="createEvent()" [routerLink]="['/']" color="primary">Post</button>
+      <button mat-raised-button (click)="createEvent()" type="button" [routerLink]="['/']" color="primary">Post</button>
+      <!-- <input type="submit" value="Submit" mat-raised-button/> -->
     </form>
   </mat-card-content>
 </mat-card>
