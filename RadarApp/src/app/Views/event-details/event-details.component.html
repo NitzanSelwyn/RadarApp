@@ -19,10 +19,9 @@
   </mat-card-content>
 </mat-card>
 
-<mat-card style="display: flex">
+<mat-card>
 
   <mat-card-content>
-    <!-- <div *ngIf="lat && lng"> -->
     <agm-map [zoom]="17" [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng" [scrollwheel]="false" [draggable]="false">
       <agm-marker [latitude]="newEvent?.location.lat" [longitude]="newEvent?.location.lng">
         <agm-info-window>

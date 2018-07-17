@@ -81,8 +81,8 @@ export class MapComponent implements OnInit {
     //console.log(destination);
     const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
     if (distance < 2000) {
+      //console.log(distance + " From " + this.city);
       return true;
-      console.log(distance + " From " + this.city);
     }
 
   }
