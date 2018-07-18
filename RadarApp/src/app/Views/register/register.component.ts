@@ -11,10 +11,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-  }
-
+  //register function
   registerUser(user) {
     this.apiService.registerUser(user);
   }

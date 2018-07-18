@@ -17,36 +17,16 @@ import { } from "@types/googlemaps";
 })
 export class EventComponent implements OnInit {
 
-  // form = new FormGroup({
-  //   eventDate: new FormControl('',
-  //     Validators.required),
-
-  //   eventDescription: new FormControl('',
-  //     Validators.required),
-
-  //   eventTitle: new FormControl('',
-  //     Validators.required),
-
-  //   eventTime: new FormControl('',
-  //     Validators.required),
-
-  //   address: new FormControl('',
-  //     Validators.required),
-  // });
   public model: postModel;
 
-  addressControl = new FormControl('', [Validators.required])
   constructor(private apiService: ApiService, private mapsAPI: MapsAPILoader, private ngZone: NgZone) {
     this.eventAuthor = this.apiService.toekn;
   }
 
-  // getErrorMessage() {
-  //   return this.addressControl.hasError('required') ? 'You must enter a value' : '';
-  // }
-
   @ViewChild('search') public searchElemnt: ElementRef;
 
   ngOnInit() {
+    //loades the search location from google
     this.mapsAPI.load().then(() => {
       let autoComplete = new google.maps.places.Autocomplete(this.searchElemnt.nativeElement, { types: ["address"] });
       autoComplete.addListener("place_changed", () => {
@@ -57,8 +37,10 @@ export class EventComponent implements OnInit {
             return;
           }
           else {
+            //gets the lat & lng of the location
             var newLat = place.geometry.location.lat();
             var newLng = place.geometry.location.lng();
+            //saving to a virable to save to DB
             this.lat = newLat;
             this.lng = newLng;
             this.address = place.formatted_address;
@@ -103,6 +85,7 @@ export class EventComponent implements OnInit {
   }
 
 
+  //creating an event using apiService
   createEvent() {
 
     this.apiService.createEvents({
@@ -120,29 +103,6 @@ export class EventComponent implements OnInit {
     //   })
     // }
   }
-
-  // validateAllFormFields(formGroup: FormGroup) {
-  //   Object.keys(formGroup.controls).forEach(field => {
-  //     console.log(field);
-  //     const control = formGroup.get(field);
-  //     if (control instanceof FormControl) {
-  //       control.markAsTouched({ onlySelf: true });
-  //     } else if (control instanceof FormGroup) {
-  //       this.validateAllFormFields(control);
-  //     }
-  //   });
-  // }
-
-  // isFieldValid(field: string) {
-  //   return !this.form.get(field).valid && this.form.get(field).touched;
-  // }
-
-  // displayFieldCss(field: string) {
-  //   return {
-  //     'has-error': this.isFieldValid(field),
-  //     'has-feedback': this.isFieldValid(field)
-  //   };
-  // }
 
 }
 
