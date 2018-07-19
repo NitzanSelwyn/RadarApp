@@ -51,7 +51,7 @@ app.get('/events', async (req, res) => {
 });
 
 
-app.post('/event', (req, res) => {
+app.post('/event', async (req, res, next) => {
 
     const title = req.body.title;
     const description = req.body.description;
@@ -60,9 +60,14 @@ app.post('/event', (req, res) => {
     const location = req.body.location;
     const address = req.body.address;
 
-    // var authorization = req.body.author;
-    // var decoded = jwt.decode(authorization, 'token')
-    // var author = decoded.author;
+    // const author = req.body.author;
+
+    var authorization = req.body.author;
+    var decoded = jwt.decode(authorization, '123')
+    //var author = postModel.findById(decoded);
+    var author = decoded;
+    console.log(author);
+
 
 
     var event = new postModel();
@@ -74,7 +79,7 @@ app.post('/event', (req, res) => {
     event.location = location;
     event.address = address;
 
-    // event.author = author;
+    event.author = author;
 
     event.save((err, results) => {
         if (err) {
@@ -82,7 +87,10 @@ app.post('/event', (req, res) => {
             res.sendStatus(500);
         }
         res.sendStatus(200);
+        //   res.end();
     });
+
+
 });
 
 

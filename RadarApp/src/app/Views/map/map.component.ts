@@ -30,7 +30,7 @@ export class MapComponent implements OnInit {
 
   city: any;
 
-  circleSize: number;
+  circleSize = 2000;
 
 
 

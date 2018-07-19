@@ -46,7 +46,8 @@ router.post('/login', async (req, res) => {
             return res.status(401).send({ message: 'User Name Or Password Is Not Valid' })
         }
 
-        let payload = { sub: user._id };
+        // let payload = { sub: user._id };
+        let payload = user._id;
         let token = jwt.encode(payload, '123')
 
 

@@ -4,8 +4,9 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ApiService } from "../../api.service";
 import { postModel } from "../../Model/post.model";
 import { Time } from '@angular/common';
+import { Router } from '@angular/router';
 
-//import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper } from 'angular2-jwt';
 
 import { MapsAPILoader } from '@agm/core';
 import { } from "@types/googlemaps";
@@ -19,8 +20,8 @@ export class EventComponent implements OnInit {
 
   public model: postModel;
 
-  constructor(private apiService: ApiService, private mapsAPI: MapsAPILoader, private ngZone: NgZone) {
-    this.eventAuthor = this.apiService.toekn;
+  constructor(private apiService: ApiService, private mapsAPI: MapsAPILoader, private ngZone: NgZone, private route: Router) {
+    //this.eventAuthor = this.apiService.toekn;
   }
 
   @ViewChild('search') public searchElemnt: ElementRef;
@@ -88,17 +89,21 @@ export class EventComponent implements OnInit {
   //creating an event using apiService
   createEvent() {
 
-    // let jwt = new JwtHelper();
-    // this.eventAuthor = jwt.decodeToken(this.apiService.toekn);
+    let jwt = new JwtHelper();
+    this.eventAuthor = jwt.decodeToken(this.apiService.toekn);
 
     this.apiService.createEvents({
-      title: this.eventTitle, description: this.eventDescription,
-      time: this.eventTime, date: this.eventDate,
+      title: this.eventTitle,
+      description: this.eventDescription,
+      time: this.eventTime,
+      date: this.eventDate,
       location: { lat: this.lat, lng: this.lng },
       address: this.address,
-      author: this.eventAuthor,
+      // author: this.eventAuthor,
+      author: this.apiService.toekn
 
     });
+    this.route.navigateByUrl("/");
   }
 
 }

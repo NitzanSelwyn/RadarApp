@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   constructor(private msgService: MessagingService) { }
 
   ngOnInit() {
-    this.msgService.getPermission()
-    this.msgService.receiveMessage()
-    this.message = this.msgService.currentMessage
+    // this.msgService.getPermission()
+    // this.msgService.receiveMessage()
+    // this.message = this.msgService.currentMessage
   }
 
 }
