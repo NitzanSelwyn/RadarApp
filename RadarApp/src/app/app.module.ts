@@ -57,7 +57,7 @@ const routes = [
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8',
+      apiKey: environment.googleMapsKey,
       libraries: ["places", "geometry"],
     }),
   ],

@@ -33,6 +33,7 @@ app.get('/events/:id', async (req, res) => {
     // req.send(events);
     try {
         let events = await postModel.findById(req.params.id);
+        // events.author = await userModel.findById(event.author);
         res.send(events);
     } catch (error) {
         console.log(error);
