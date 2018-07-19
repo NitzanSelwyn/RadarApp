@@ -25,6 +25,7 @@
     "@angular/router": "^6.0.3",
     "@google/maps": "^0.5.4",
     "@reactivex/rxjs": "^5.5.3",
+    "angular2-jwt": "^0.2.3",
     "angularfire2": "^5.0.0-rc.11",
     "core-js": "^2.5.4",
     "firebase": "^5.2.0",

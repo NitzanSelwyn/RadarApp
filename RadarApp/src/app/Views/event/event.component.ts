@@ -5,7 +5,7 @@ import { ApiService } from "../../api.service";
 import { postModel } from "../../Model/post.model";
 import { Time } from '@angular/common';
 
-
+//import { JwtHelper } from 'angular2-jwt';
 
 import { MapsAPILoader } from '@agm/core';
 import { } from "@types/googlemaps";
@@ -88,6 +88,9 @@ export class EventComponent implements OnInit {
   //creating an event using apiService
   createEvent() {
 
+    // let jwt = new JwtHelper();
+    // this.eventAuthor = jwt.decodeToken(this.apiService.toekn);
+
     this.apiService.createEvents({
       title: this.eventTitle, description: this.eventDescription,
       time: this.eventTime, date: this.eventDate,
@@ -96,12 +99,6 @@ export class EventComponent implements OnInit {
       author: this.eventAuthor,
 
     });
-    // let isValid = this.apiService.createEvents(this.form.value);
-    // if (!isValid) {
-    //   this.form.setErrors({
-    //     invalidSubmit: true;
-    //   })
-    // }
   }
 
 }

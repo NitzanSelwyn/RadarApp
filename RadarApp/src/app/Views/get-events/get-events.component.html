@@ -1,11 +1,7 @@
-<!-- <div *ngFor="let eve of apiService.events">
-  <mat-card [routerLink]="['/events',eve._id]">
-    {{eve.title}}
-  </mat-card>
-</div> -->
 <br>
 <mat-chip-list class="mat-chip-list-stacked">
   <mat-chip *ngFor="let eve of apiService.events" selected [color]="primary" [routerLink]="['/events',eve._id]">
     {{eve.title}}
   </mat-chip>
 </mat-chip-list>
+<br>

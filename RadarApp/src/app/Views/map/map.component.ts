@@ -30,6 +30,8 @@ export class MapComponent implements OnInit {
 
   city: any;
 
+  circleSize: number;
+
 
 
   //Reverse Geocoding To Find "Human" Address
@@ -53,7 +55,6 @@ export class MapComponent implements OnInit {
 
   //get your corrent position and also the address
   getUserLocation() {
-    /// locate the user
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
@@ -66,6 +67,23 @@ export class MapComponent implements OnInit {
     }
   }
 
+  //event change circle size
+  chnageCircleSize($event) {
+    this.circleSize = $event.value;
+  }
+
+  //formating the label of the slide bar
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
 
   //Calculateing Distance Between you position to a point from DB
   calculate(lat: any, lng: any): boolean {
@@ -74,7 +92,7 @@ export class MapComponent implements OnInit {
     var destination = new google.maps.LatLng(lat, lng);//positions from DB
     //console.log(destination);
     const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);//distance between to locations
-    if (distance < 2000) {
+    if (distance < this.circleSize) {
       //console.log(distance + " From " + this.city);
       return true;
     }
@@ -89,7 +107,7 @@ export class MapComponent implements OnInit {
 
 
 
-}
+
 
 
 // interface marker {

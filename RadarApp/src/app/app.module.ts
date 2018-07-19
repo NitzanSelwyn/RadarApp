@@ -8,6 +8,7 @@ import {
   MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule,
   MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule
 } from "@angular/material";
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Views/login/login.component';
@@ -43,7 +44,7 @@ const routes = [
 @NgModule({
   imports: [
     MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule,
-    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule,
+    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule, MatSliderModule,
     BrowserModule,
     HttpClientModule,
     RouterModule,
