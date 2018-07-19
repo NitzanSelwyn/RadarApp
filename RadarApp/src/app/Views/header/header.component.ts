@@ -11,6 +11,7 @@ export class HeaderComponent {
 
   constructor(private apiService: ApiService) { }
 
+  //logout function
   logout() {
     this.apiService.logout();
   }

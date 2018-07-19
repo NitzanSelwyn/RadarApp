@@ -6,8 +6,6 @@ import { } from "google-distance-matrix";
 import { } from "@types/googlemaps";
 import { MapsAPILoader, MapTypeStyle } from '@agm/core';
 
-//import { } from "@reactivex/rxjs/BehaviorSubject";
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -24,21 +22,17 @@ export class MapComponent implements OnInit {
     this.apiService.getEvents();
   }
 
-
   destLat: number;
   destLng: number;
-
 
   lat: number;
   lng: number;
 
-  // startlat: number = 32.109333;
-  // startlng: number = 34.855499;
-  // google: any;
-
   city: any;
 
-  //styles = [this.mapStyles.Aubergine];
+  circleSize = 2000;
+
+
 
   //Reverse Geocoding To Find "Human" Address
   reverseGeocoding(lat: number, lng: number) {
@@ -59,8 +53,8 @@ export class MapComponent implements OnInit {
 
   }
 
+  //get your corrent position and also the address
   getUserLocation() {
-    /// locate the user
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
@@ -73,29 +67,47 @@ export class MapComponent implements OnInit {
     }
   }
 
+  //event change circle size
+  chnageCircleSize($event) {
+    this.circleSize = $event.value;
+  }
 
+  //formating the label of the slide bar
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return value;
+  }
+
+  //Calculateing Distance Between you position to a point from DB
   calculate(lat: any, lng: any): boolean {
     var origin = new google.maps.LatLng(this.lat, this.lng);//your corrent position
     // console.log(origin);
     var destination = new google.maps.LatLng(lat, lng);//positions from DB
     //console.log(destination);
-    const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
-    if (distance < 2000) {
+    const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);//distance between to locations
+    if (distance < this.circleSize) {
+      //console.log(distance + " From " + this.city);
       return true;
-      console.log(distance + " From " + this.city);
     }
 
   }
 
-  //console.log(distance);
-
-}
-
-
-
 
 
 }
+
+
+
+
+
+
 
 
 // interface marker {

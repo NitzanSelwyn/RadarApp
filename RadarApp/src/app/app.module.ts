@@ -8,6 +8,7 @@ import {
   MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule,
   MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule
 } from "@angular/material";
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Views/login/login.component';
@@ -18,6 +19,7 @@ import { EventComponent } from './Views/event/event.component';
 import { ApiService } from "./api.service";
 import { AuthInterceptorService } from "./Services/authinterceptor.service";
 import { AuthService } from './Services/auth.service';
+// import { MessagingService } from './Services/messaging.service';
 
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "angularfire2";
@@ -42,8 +44,10 @@ const routes = [
 
 @NgModule({
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+
     MatButtonModule, MatCardModule, MatToolbarModule, MatInputModule, MatListModule, MatCheckboxModule,
-    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule,
+    MatDatepickerModule, MatNativeDateModule, MatChipsModule, MatPaginatorModule, MatSliderModule,
     BrowserModule,
     HttpClientModule,
     RouterModule,
@@ -52,9 +56,8 @@ const routes = [
     RouterModule.forRoot(routes),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase, 'raderapp'),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8',
+      apiKey: environment.googleMapsKey,
       libraries: ["places", "geometry"],
     }),
   ],

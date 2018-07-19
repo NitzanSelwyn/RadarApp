@@ -9,6 +9,7 @@ import { ApiService } from "../../api.service";
 export class LoginComponent {
 
   constructor(private apiService: ApiService) { }
+  //login function
   loginUser(user) {
     this.apiService.loginUser(user);
   }

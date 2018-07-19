@@ -12,6 +12,7 @@ export class GetEventsComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //gets all events
     this.apiService.getEvents();
   }
 

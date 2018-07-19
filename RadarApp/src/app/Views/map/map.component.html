@@ -1,8 +1,10 @@
 <mat-card>
   <div>
     <mat-card-content>
+      <mat-slider thumbLabel style="width: 50%" (input)="chnageCircleSize($event)" [displayWith]="formatLabel" tickInterval="100"
+        min="100" max="10000"></mat-slider>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13" [style]="styles">
-        <!-- [hidden]="calculate(eve?.location.lat,eve?.location.lng)" -->
+        <!-- wraping the marker with ng-container so I can only show the marker that are within the range -->
         <ng-container *ngFor="let eve of apiService.events">
           <agm-marker [latitude]="eve?.location.lat" [longitude]="eve?.location.lng" *ngIf="calculate(eve.location.lat,eve.location.lng)">
             <agm-info-window>
@@ -22,7 +24,7 @@
               <p>Adress: {{city}}</p>
             </h3>
           </agm-info-window>
-          <agm-circle [latitude]="lat" [longitude]="lng" [radius]="2000" [fillColor]="'black'" [circleDraggable]="false" [editable]="false">
+          <agm-circle [latitude]="lat" [longitude]="lng" [radius]="circleSize" [fillColor]="'black'" [circleDraggable]="false" [editable]="false">
           </agm-circle>
         </agm-marker>
       </agm-map>
