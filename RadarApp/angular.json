@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "RadarApp": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "src",
+      "sourceRoot": "",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -20,7 +20,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "firebase-messaging-sw.js",
+              "manifest.json"
             ],
             "styles": [
               "src/styles.css"

@@ -3,12 +3,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBnFN1kTFBLsxHPExX2XTNZZMu1B3kLFJY",
-    authDomain: "raderapp.firebaseapp.com",
-    databaseURL: "https://raderapp.firebaseio.com",
-    projectId: "raderapp",
-    storageBucket: "raderapp.appspot.com",
-    messagingSenderId: "956307132847"
+    apiKey: "AIzaSyAtWn-5WkUeM_XlNDekzAIIc5ZM5BJgKac",
+    authDomain: "firstfirebaseproject-a45c3.firebaseapp.com",
+    databaseURL: "https://firstfirebaseproject-a45c3.firebaseio.com",
+    projectId: "firstfirebaseproject-a45c3",
+    storageBucket: "firstfirebaseproject-a45c3.appspot.com",
+    messagingSenderId: "236948604143"
   }
 
 };
