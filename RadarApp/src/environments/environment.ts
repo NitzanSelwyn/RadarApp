@@ -11,6 +11,6 @@ export const environment = {
     messagingSenderId: "236948604143"
   },
 
-  googleMapsKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8'
+  googleMapsKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8',
 
 };
