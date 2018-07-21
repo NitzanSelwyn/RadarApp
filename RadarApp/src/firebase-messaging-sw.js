@@ -10,13 +10,41 @@ var config = {
     storageBucket: "firstfirebaseproject-a45c3.appspot.com",
     messagingSenderId: "236948604143"
 };
-firebase.initializeApp(config);
+// firebase.initializeApp({
+//     navigator: serviceWorker.register('/firebase-messaging-sw.js')
+//         .then((registration) => {
+//             messaging.useServiceWorker(registration);
+
+//             // Request permission and get token.....
+//             // this.messaging.requestPermission()
+//             //     .then(() => {
+//             //         console.log('Notification permission granted.');
+//             //         return this.messaging.getToken()
+//             //     })
+//             //     .then(token => {
+//             //         console.log(token)
+//             //         this.updateToken(token)
+//             //     })
+//             //     .catch((err) => {
+//             //         console.log('Unable to get permission to notify.', err);
+//             //     });
+//         }),
+//     config,
+// });
+
+// const messaging = firebase.messaging();
+// messaging.setBackgroundMessageHandler(function (payload) {
+//     const title = 'Hello World from SW!';
+//     const options = {
+//         body: payload.data.status
+//     };
+//     return self.registration.showNotification(title, options);
+// });
+
+// firebase.initializeApp({
+//     'messagingSenderId': '236948604143'
+// });
+
+firebase.initializeApp(config)
 
 const messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler(function (payload) {
-    const title = 'Hello World from SW!';
-    const options = {
-        body: payload.data.status
-    };
-    return self.registration.showNotification(title, options);
-});

@@ -3,12 +3,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 
+import '@firebase/messaging'
+
 import 'rxjs/add/operator/take';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MessagingService {
 
   messaging = firebase.messaging()

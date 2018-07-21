@@ -19,7 +19,8 @@ import { EventComponent } from './Views/event/event.component';
 import { ApiService } from "./api.service";
 import { AuthInterceptorService } from "./Services/authinterceptor.service";
 import { AuthService } from './Services/auth.service';
-// import { MessagingService } from './Services/messaging.service';
+import { MessagingService } from './Services/messaging.service';
+import * as firebase from 'firebase';
 
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "angularfire2";
@@ -41,6 +42,9 @@ const routes = [
   { path: "events", component: GetEventsComponent },
   { path: "events/:id", component: EventDetailsComponent }
 ];
+
+
+firebase.initializeApp(environment.firebase)
 
 @NgModule({
   imports: [
@@ -76,7 +80,7 @@ const routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true,
-  }, AuthService, mapstyles],
+  }, AuthService, mapstyles, MessagingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

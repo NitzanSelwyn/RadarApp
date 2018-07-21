@@ -1,4 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <script src="https://maps.googleapis.com/maps/api/js" async defer></script>
 
+<h1>{{ (message | async)?.notification.title }}</h1>
+<p>{{ (message | async)?.notification.body }}</p>
+
+{{message | async | json}}
+
 <app-header></app-header>

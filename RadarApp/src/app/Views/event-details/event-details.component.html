@@ -15,12 +15,12 @@
       <mat-list-item> Location: {{newEvent?.address}} </mat-list-item>
       <mat-list-item> Event Orginaizer: {{newEvent?.author}} </mat-list-item>
       <mat-list-item>
-        <button mat-raised-button routerLink="/" color="primary">Join To This Event</button>
+        <button mat-raised-button routerLink="/" (click)="RegisterToEvent()" color="primary">Join To This Event</button>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
 </mat-card>
-
+13ea
 <mat-card>
 
   <mat-card-content>

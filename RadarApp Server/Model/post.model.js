@@ -8,6 +8,6 @@ module.exports = mongoose.model('Event', {
     date: String,
     location: { lat: Number, lng: Number },
     address: String,
-    author: String,
-    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+    participants: [String],
 });

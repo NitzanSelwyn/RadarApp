@@ -24,5 +24,9 @@ export class EventDetailsComponent implements OnInit {
 
   }
 
+  RegisterToEvent() {
+
+  }
+
 
 }

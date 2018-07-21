@@ -41,6 +41,22 @@ app.get('/events/:id', async (req, res) => {
     }
 });
 
+
+
+// app.get('/:id', async (req, res) => {
+//     // var author = req.params.id;
+//     // var events = await postModel.find({ author });
+//     // req.send(events);
+//     try {
+//         let events = await userModel.findById(req.params.id);
+//         // events.author = await userModel.findById(event.author);
+//         res.send(events);
+//     } catch (error) {
+//         console.log(error);
+//         res.sendStatus(500);
+//     }
+// });
+
 app.get('/events', async (req, res) => {
     try {
         let events = await postModel.find({});
@@ -65,7 +81,7 @@ app.post('/event', async (req, res, next) => {
 
     var authorization = req.body.author;
     var decoded = jwt.decode(authorization, '123')
-    //var author = postModel.findById(decoded);
+    // var author = postModel.findById(decoded);
     var author = decoded;
     console.log(author);
 
