@@ -31,6 +31,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './Views/map/map.component';
 import { GetEventsComponent } from './Views/get-events/get-events.component';
 import { EventDetailsComponent } from './Views/event-details/event-details.component';
+import { FirebaseAuthService } from './services/firebase-auth.service';
 
 import { mapstyles } from "./Views/map/map.style";
 
@@ -44,7 +45,7 @@ const routes = [
 ];
 
 
-firebase.initializeApp(environment.firebase)
+
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ firebase.initializeApp(environment.firebase)
     RouterModule.forRoot(routes),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey,
       libraries: ["places", "geometry"],
@@ -80,7 +82,7 @@ firebase.initializeApp(environment.firebase)
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true,
-  }, AuthService, mapstyles, MessagingService],
+  }, AuthService, mapstyles, MessagingService, FirebaseAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

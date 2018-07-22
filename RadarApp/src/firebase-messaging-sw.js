@@ -33,13 +33,7 @@ var config = {
 // });
 
 // const messaging = firebase.messaging();
-// messaging.setBackgroundMessageHandler(function (payload) {
-//     const title = 'Hello World from SW!';
-//     const options = {
-//         body: payload.data.status
-//     };
-//     return self.registration.showNotification(title, options);
-// });
+
 
 // firebase.initializeApp({
 //     'messagingSenderId': '236948604143'
@@ -48,3 +42,10 @@ var config = {
 firebase.initializeApp(config)
 
 const messaging = firebase.messaging();
+messaging.setBackgroundMessageHandler(function (payload) {
+    const title = 'Hello World from SW!';
+    const options = {
+        body: payload.data.status
+    };
+    return self.registration.showNotification(title, options);
+});
