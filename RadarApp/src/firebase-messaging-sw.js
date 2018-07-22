@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
 
 
 var config = {
@@ -39,13 +39,20 @@ var config = {
 //     'messagingSenderId': '236948604143'
 // });
 
-firebase.initializeApp(config)
+firebase.initializeApp({
+    'messagingSenderId': '236948604143'
+})
 
 const messaging = firebase.messaging();
 messaging.setBackgroundMessageHandler(function (payload) {
-    const title = 'Hello World from SW!';
-    const options = {
-        body: payload.data.status
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+    // Customize notification here
+    var notificationTitle = 'Background Message Title';
+    var notificationOptions = {
+        body: 'Background Message body.',
+        icon: '/firebase-logo.png'
     };
-    return self.registration.showNotification(title, options);
+
+    return self.registration.showNotification(notificationTitle,
+        notificationOptions);
 });

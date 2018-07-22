@@ -11,7 +11,7 @@ import { FirebaseAuthService } from './services/firebase-auth.service';
 export class AppComponent implements OnInit {
   title = 'app works!';
   user;
-  message;
+  message = '';
 
   constructor(private msgService: MessagingService, private _auth: FirebaseAuthService) { }
 
@@ -27,7 +27,10 @@ export class AppComponent implements OnInit {
 
       this.msgService.getPermission();
       this.msgService.receiveMessage();
-      this.msgService.currentMessage.subscribe(message => this.message = message);
+      this.msgService.currentMessage.subscribe((message) => {
+        // debugger;
+        this.message = message
+      });
     });
   }
 

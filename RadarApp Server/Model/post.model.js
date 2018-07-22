@@ -9,5 +9,5 @@ module.exports = mongoose.model('Event', {
     location: { lat: Number, lng: Number },
     address: String,
     author: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
-    participants: [String],
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 });

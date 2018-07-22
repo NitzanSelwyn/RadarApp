@@ -48,7 +48,9 @@ export class MessagingService {
       });
   }
 
+
   receiveMessage() {
+    //  debugger;
     this.messaging.onMessage((payload) => {
       console.log("Message received. ", payload);
       this.currentMessage.next(payload)
