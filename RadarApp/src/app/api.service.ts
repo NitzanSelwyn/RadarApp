@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 
+import { environment } from "../environments/environment";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +15,8 @@ export class ApiService {
 
   TOKEN_KEY = 'token';
 
-  authPath = 'http://localhost:3000/auth'
-  path = 'http://localhost:3000';
+  authPath = environment.path + '/auth'
+  path = environment.path;
 
 
   get toekn() {

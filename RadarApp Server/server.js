@@ -21,7 +21,8 @@ const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationpro
 app.use(cors());
 app.use(bodyparser.json())
 
-app.set('port', process.env.process || 3000);
+//app.set('port', process.env.process || 3000);
+var port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
     res.send('This is the SERVER');
@@ -118,8 +119,12 @@ app.post('/event', async (req, res, next) => {
 
 app.use('/auth', auth);
 
-app.listen(app.get('port'), (err, res) => {
-    console.log("server is running");
+// app.listen(app.get('port'), (err, res) => {
+//     console.log("server is running");
+// });
+
+app.listen(port, function () {
+    console.log('listening on', + port);
 });
 
 
