@@ -44,19 +44,44 @@ app.get('/events/:id', async (req, res) => {
 
 
 
-// app.get('/:id', async (req, res) => {
-//     // var author = req.params.id;
-//     // var events = await postModel.find({ author });
-//     // req.send(events);
-//     try {
-//         let events = await userModel.findById(req.params.id);
-//         // events.author = await userModel.findById(event.author);
-//         res.send(events);
-//     } catch (error) {
-//         console.log(error);
-//         res.sendStatus(500);
-//     }
-// });
+app.get('/users/', async (req, res) => {
+    try {
+        let events = await userModel.find({}, '-password -__v');
+        res.send(events);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+app.get('/users/:id', async (req, res) => {
+
+    try {
+        let user = await userModel.findById(req.params.id, '-password -__v');
+        userToSend = user.firstname;
+        console.log(userToSend);
+        res.send(userToSend);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
+app.get('/profile/:id', async (req, res) => {
+    var authorization = req.body.id;
+    console.log(authorization);
+    var decoded = jwt.decode(authorization, '123')
+    // var author = postModel.findById(decoded);
+    var author = decoded;
+    try {
+        let user = await userModel.findById(req.params.id, '-password -__v');
+
+        res.send(user);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
 
 app.get('/events', async (req, res) => {
     try {

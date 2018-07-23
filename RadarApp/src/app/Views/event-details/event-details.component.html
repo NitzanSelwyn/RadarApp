@@ -13,7 +13,7 @@
       <mat-list-item> Date: {{newEvent?.date}}</mat-list-item>
       <mat-list-item> Time: {{newEvent?.time}}</mat-list-item>
       <mat-list-item> Location: {{newEvent?.address}} </mat-list-item>
-      <mat-list-item> Event Orginaizer: {{newEvent?.author}} </mat-list-item>
+      <mat-list-item> Event Orginaizer: {{apiService.getUserByID(newEvent?.author)}} </mat-list-item>
       <mat-list-item>
         <button mat-raised-button routerLink="/" (click)="RegisterToEvent()" color="primary">Join To This Event</button>
       </mat-list-item>

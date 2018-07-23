@@ -13,6 +13,7 @@ export class ApiService {
 
   events = []
 
+
   TOKEN_KEY = 'token';
 
   authPath = environment.path + '/auth'
@@ -72,6 +73,15 @@ export class ApiService {
       this.events = res;
       console.log(res);
     });
+
+  }
+
+  getUserByID(id) {
+    return this.http.get<any>(this.authPath + '/users/' + id)
+  }
+
+  getUserProfile(id) {
+    return this.http.get<any>(this.authPath + '/profile/' + id)
 
   }
 

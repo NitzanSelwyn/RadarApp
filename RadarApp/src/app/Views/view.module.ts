@@ -9,6 +9,7 @@ import { EventComponent } from './event/event.component';
 import { MapComponent } from './map/map.component';
 import { GetEventsComponent } from './get-events/get-events.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes = [
@@ -42,7 +43,8 @@ const routes = [
         MapComponent,
         MapComponent,
         GetEventsComponent,
-        EventDetailsComponent
+        EventDetailsComponent,
+        ProfileComponent
     ],
     providers: [],
     bootstrap: []
