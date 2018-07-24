@@ -13,8 +13,11 @@ export class ProfileComponent implements OnInit {
   userProfile = {};
 
   ngOnInit() {
-    let id = this.apiService.toekn;
-    this.apiService.getUserProfile(id).subscribe(data => this.userProfile = data);
+    // let token = this.apiService.toekn;
+    this.apiService.getUserProfile(this.apiService.toekn).subscribe(user => {
+      console.log(user)
+      this.userProfile = user
+    });
   }
 
 }

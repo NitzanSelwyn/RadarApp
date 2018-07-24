@@ -23,7 +23,9 @@ export class MessagingService {
   messaging = firebase.messaging();
   currentMessage = new BehaviorSubject(null);
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) { }
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    this.messaging.usePublicVapidKey("BBG16voCUhcfKA4rcIbLOZ0VQta3uFFSaBdfrx3IgnhR7oTRKBbWOIWOTifQ8QF9zV6bHlkZlrJh8HIbJvbdxj8");
+  }
 
   updateToken(token) {
     this.afAuth.authState.take(1).subscribe(user => {

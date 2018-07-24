@@ -77,12 +77,13 @@ export class ApiService {
   }
 
   getUserByID(id) {
-    return this.http.get<any>(this.authPath + '/users/' + id)
+    console.log(id);
+    return this.http.get(this.path + '/users/' + id, { responseType: 'text' });
   }
 
-  getUserProfile(id) {
-    return this.http.get<any>(this.authPath + '/profile/' + id)
-
+  getUserProfile(token) {
+    console.log(token);
+    return this.http.get(this.path + '/profile/' + token);
   }
 
 }

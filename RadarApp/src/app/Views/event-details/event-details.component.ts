@@ -22,9 +22,12 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit() {
     //gets data from db by event ID
     let id = this.route.snapshot.params.id;
-    this.apiService.getEventsDetails(id).subscribe(data => this.newEvent = data);
+    this.apiService.getEventsDetails(id).subscribe(data => {
+      this.newEvent = data;
+
+      this.apiService.getUserByID(data.author).subscribe(userName => this.author = userName);
+    });
     //debugger;
-    //  this.apiService.getUserByID(this.authorID).subscribe(data => this.author = data)
 
   }
 

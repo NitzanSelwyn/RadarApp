@@ -67,20 +67,25 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
-app.get('/profile/:id', async (req, res) => {
-    var authorization = req.body.id;
-    console.log(authorization);
-    var decoded = jwt.decode(authorization, '123')
-    // var author = postModel.findById(decoded);
-    var author = decoded;
-    try {
-        let user = await userModel.findById(req.params.id, '-password -__v');
+app.get('/profile/:id', (req, res) => {
 
-        res.send(user);
-    } catch (error) {
-        console.log(error);
-        res.sendStatus(500);
+    console.log(req.body.id)
+    var authorization = req.body.id;
+    if (authorization != null) {
+        var decoded = jwt.decode(authorization, '123')
+        // var author = postModel.findById(decoded);
+        var author = decoded;
+        console.log(author);
+        try {
+            let user = userModel.findById(author, '-password -__v');
+
+            res.send(user);
+        } catch (error) {
+            console.log(error);
+            res.sendStatus(500);
+        }
     }
+
 });
 
 app.get('/events', async (req, res) => {
