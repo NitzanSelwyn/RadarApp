@@ -5,22 +5,23 @@
     <mat-card-content>
         <form id="formData" #userData="ngForm" (ngSubmit)="registerUser(userData.value)">
             <mat-form-field>
-                <input matInput placeholder="First Name" name="firstname" type="text" ngModel />
+                <input matInput placeholder="First Name" [(ngModel)]="firstname" name="firstname" type="text" />
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput placeholder="Last Name" name="lastname" type="text" ngModel />
+                <input matInput placeholder="Last Name" [(ngModel)]="lastname" name="lastname" type="text" />
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput placeholder="User Name" name="username" type="text" ngModel />
+                <input matInput placeholder="User Name" [(ngModel)]="username" name="username" type="text" />
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput placeholder="Password" name="password" type="password" ngModel />
+                <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password" />
             </mat-form-field>
             <br>
-            <input type="submit" value="Register" mat-button />
+            <button mat-raised-button (click)="registerUser()" type="button" color="primary">Register</button>
+
         </form>
     </mat-card-content>
 </mat-card>

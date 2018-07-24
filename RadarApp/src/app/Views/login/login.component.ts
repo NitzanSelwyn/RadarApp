@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../api.service";
+import { MessagingService } from "../../Services/messaging.service";
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,14 @@ import { ApiService } from "../../api.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-  constructor(private apiService: ApiService) { }
-  //login function
-  loginUser(user) {
-    this.apiService.loginUser(user);
+  userName: String;
+  password: String;
+  fcmToken;
+  constructor(private msgService: MessagingService, private apiService: ApiService) { }
+  loginUser() {
+    this.fcmToken = this.msgService.getPermission()
+    this.msgService.receiveMessage()
+    // this.msgService = this.msgService.currentMessage
+    this.apiService.loginUser({ username: this.userName, password: this.password });
   }
 }

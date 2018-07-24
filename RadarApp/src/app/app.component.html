@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <script src="https://maps.googleapis.com/maps/api/js" async defer></script>
 
-<div class="container">
+<!-- <div class="container">
 
     <div class="media" *ngIf="user">
         <div class="media-left">
@@ -19,11 +19,11 @@
             <div class="row">
                 <pre>{{ message | json }}</pre>
             </div>
-            <!-- <div class="media-left">
+            <div class="media-left">
                 <a href="#">
                     <img class="media-object" style="height:100px" src="{{message.notification.icon}}" alt="{{message.notification.title}}">
                 </a>
-            </div> -->
+            </div>
             <div class="media-body">
                 <h4 class="media-heading">{{ message.notification.title }}</h4>
                 <h6>{{ message.notification.body }}</h6>
@@ -37,13 +37,9 @@
         <button class="btn btn-warning" (click)="loginWithGoogle()">Login With Google</button>
     </div>
 
-</div>
+</div> -->
 
-<!-- <h1>{{ (message | async)?.notification.title }}</h1>
+<h1>{{ (message | async)?.notification.title }}</h1>
 <p>{{ (message | async)?.notification.body }}</p>
 
-{{ message | async | json }} -->
-
-
-{{ message | async | json }}
 <app-header></app-header>

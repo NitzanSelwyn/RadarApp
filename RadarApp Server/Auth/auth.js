@@ -12,12 +12,14 @@ router.post('/register', (req, res) => {
     const username = req.body.username;
     const lastname = req.body.lastname;
     const password = req.body.password;
+    const fcmToken = req.body.fcmToken;
 
     const user = new userModel();
     user.firstname = firstname;
     user.lastname = lastname;
     user.username = username;
     user.password = password;
+    user.fcmToken = fcmToken;
 
     user.save((err, newUser) => {
         if (err) {
