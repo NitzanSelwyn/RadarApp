@@ -16,7 +16,7 @@ Navigate to the RadarAppClient folder and run the command `npm install` after th
 For the client - I used angular mainly to learn and extand my knowledge.  
 
 ### Styling My Front-End - 
-- For the front-end I used [`Angular Material`]( https://material.angular.io/).
+- For the front-end I used [`Angular Material`](https://material.angular.io/guide/getting-started).
 - For The Google Map I used [`AGM(Angular Google Maps)`](https://angular-maps.com/).
 
 ## Node.js - 
