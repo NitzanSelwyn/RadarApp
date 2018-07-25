@@ -44,6 +44,7 @@ export class EventDetailsComponent implements OnInit {
     //register to the event
     const authorID = this.apiService.toekn;
     const eventID = this.route.snapshot.params.id;
+    this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
 
     this.jsonOfPush = {
 
@@ -58,13 +59,11 @@ export class EventDetailsComponent implements OnInit {
 
   }
 
-    this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
-
-
-
-  }
-
 
 
 
 }
+
+
+
+

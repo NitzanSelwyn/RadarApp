@@ -13,10 +13,10 @@ export const environment = {
 
   googleMapsKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8',
 
-  //path: "https://herokulocationservice.herokuapp.com",
-  //authPath: "https://herokulocationservice.herokuapp.com/auth",
-  path: "http://localhost:5000",
-  authPath: "http://localhost:5000/auth",
+  path: "https://herokulocationservice.herokuapp.com",
+  authPath: "https://herokulocationservice.herokuapp.com/auth",
+  // path: "http://localhost:5000",
+  // authPath: "http://localhost:5000/auth",
   TOKEN_KEY: "token",
 
 };

@@ -119,7 +119,8 @@ export class ApiService {
   }
 
   sendPushNotificationToAuthor(data) {
-    this.http.post('https://fcm.googleapis.com/fcm/send', this.headers, data).subscribe(res => {
+    let options = { headers: this.headers }
+    this.http.post('https://fcm.googleapis.com/fcm/send', data, options).subscribe(res => {
       console.log(res);
     })
   }

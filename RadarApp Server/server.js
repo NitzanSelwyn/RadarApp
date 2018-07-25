@@ -184,7 +184,7 @@ app.put('/updateuser', async (req, res) => {
     var authorization = req.body.userToken;
     var decoded = jwt.decode(authorization, '123')
     var userID = decoded;
-    let event = await userModel.updateOne({ '_id': userID }, { $addToSet: { 'fcmToken': fcmToken } }, (err, res) => {
+    let event = await userModel.updateOne({ '_id': userID }, { $Set: { 'fcmToken': fcmToken } }, (err, res) => {
         if (err) {
             console.log(err);
         } else {
