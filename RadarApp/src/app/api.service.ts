@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 import { environment } from "../environments/environment";
@@ -10,6 +10,12 @@ import { environment } from "../environments/environment";
 export class ApiService {
 
   constructor(private http: HttpClient, private route: Router) { }
+
+
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'key=AIzaSyDV6hcrbzVzzgp4FIs4G488IZ_NWVjd7xA'
+  });
 
   events = []
 
@@ -96,6 +102,10 @@ export class ApiService {
     return this.http.get(this.path + '/users/' + id, { responseType: 'text' });
   }
 
+  getUserFcmToken(id) {
+    return this.http.get(this.path + '/users/fcmToken' + id, { responseType: 'text' });
+  }
+
   getUserProfile(token) {
     console.log(token);
     return this.http.get(this.path + '/profile/' + token);
@@ -106,6 +116,12 @@ export class ApiService {
       console.log(res);
     })
 
+  }
+
+  sendPushNotificationToAuthor(data) {
+    this.http.post('https://fcm.googleapis.com/fcm/send', this.headers, data).subscribe(res => {
+      console.log(res);
+    })
   }
 
 }

@@ -16,8 +16,10 @@ export class EventDetailsComponent implements OnInit {
 
 
   newEvent = {};
+  jsonOfPush = {};
   author = '';
   authorID = '';
+  authorFcmToken = '';
 
   ngOnInit() {
     //gets data from db by event ID
@@ -28,6 +30,9 @@ export class EventDetailsComponent implements OnInit {
 
       //get the username of the author by his ID
       this.apiService.getUserByID(data.author).subscribe(userName => this.author = userName);
+
+      // get the author fcmToken
+      this.apiService.getUserFcmToken(data.author).subscribe(fcmToken => this.authorFcmToken = fcmToken);
 
 
     });
@@ -40,9 +45,26 @@ export class EventDetailsComponent implements OnInit {
     const authorID = this.apiService.toekn;
     const eventID = this.route.snapshot.params.id;
 
-    this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
+    this.jsonOfPush = {
+
+      "notification": {
+        "title": "♥♥♥♥",
+        "body": "New Participant",
+      },
+
+      "to": this.authorFcmToken
+    }
+
 
   }
+
+    this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
+
+
+
+  }
+
+
 
 
 }

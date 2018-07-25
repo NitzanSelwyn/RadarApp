@@ -69,6 +69,18 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
+app.get('/users/fcmToken/:id', async (req, res) => {
+
+    try {
+        let user = await userModel.findById(req.params.id, '-password -__v');
+        fcmToken = user.fcmToken;
+        res.send(fcmToken);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
+
 //get current user profile(dosent work)
 app.get('/profile/:id', (req, res) => {
 
