@@ -34,7 +34,6 @@ import { EventDetailsComponent } from './Views/event-details/event-details.compo
 import { FirebaseAuthService } from './services/firebase-auth.service';
 
 import { mapstyles } from "./Views/map/map.style";
-import { ProfileComponent } from './Views/profile/profile.component';
 
 const routes = [
   { path: "register", component: RegisterComponent },
@@ -43,7 +42,6 @@ const routes = [
   { path: "map", component: MapComponent },
   { path: "events", component: GetEventsComponent },
   { path: "events/:id", component: EventDetailsComponent },
-  { path: "profile", component: ProfileComponent }
 ];
 
 
@@ -78,7 +76,6 @@ const routes = [
     MapComponent,
     GetEventsComponent,
     EventDetailsComponent,
-    ProfileComponent,
 
   ],
   providers: [ApiService, {

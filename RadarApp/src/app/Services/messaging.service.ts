@@ -35,18 +35,19 @@ export class MessagingService {
     });
   }
 
-  getPermission() {
+  getPermission(): any {
     this.messaging.requestPermission()
       .then(() => {
         console.log('Notification permission granted.');
         return this.messaging.getToken()
       })
       .then(token => {
-        console.log(token)
         this.updateToken(token)
+        localStorage.setItem('fcmToken', token);
       })
       .catch((err) => {
         console.log('Unable to get permission to notify.', err);
+        return
       });
   }
 

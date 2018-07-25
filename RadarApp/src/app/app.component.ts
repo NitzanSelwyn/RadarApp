@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.msgService.getPermission()
-    // this.msgService.receiveMessage()
-    // this.message = this.msgService.currentMessage
+    this.msgService.receiveMessage()
+    this.message = this.msgService.currentMessage
   }
 
   // loginWithGoogle() {

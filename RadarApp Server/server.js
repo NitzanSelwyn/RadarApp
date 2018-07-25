@@ -11,7 +11,7 @@ const userModel = require('./Model/user.model')
 
 const auth = require('./Auth/auth')
 
-
+//connection to MongoDB Atlas
 const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationproject-vh41z.mongodb.net/test')
     .then(() => console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could Not Connect', err));
@@ -24,10 +24,12 @@ app.use(bodyparser.json())
 //app.set('port', process.env.process || 3000);
 var port = process.env.PORT || 5000;
 
+//main server
 app.get('/', (req, res) => {
     res.send('This is the SERVER');
 });
 
+//get event by id for more details
 app.get('/events/:id', async (req, res) => {
     // var author = req.params.id;
     // var events = await postModel.find({ author });
@@ -42,8 +44,7 @@ app.get('/events/:id', async (req, res) => {
     }
 });
 
-
-
+//gets all user without password
 app.get('/users/', async (req, res) => {
     try {
         let events = await userModel.find({}, '-password -__v');
@@ -54,6 +55,7 @@ app.get('/users/', async (req, res) => {
     }
 });
 
+//get user by id and send his user name without password
 app.get('/users/:id', async (req, res) => {
 
     try {
@@ -67,6 +69,7 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
+//get current user profile(dosent work)
 app.get('/profile/:id', (req, res) => {
 
     console.log(req.body.id)
@@ -88,6 +91,7 @@ app.get('/profile/:id', (req, res) => {
 
 });
 
+//get all events
 app.get('/events', async (req, res) => {
     try {
         let events = await postModel.find({});
@@ -98,7 +102,7 @@ app.get('/events', async (req, res) => {
     }
 });
 
-
+//post new event
 app.post('/event', async (req, res, next) => {
 
     const title = req.body.title;
@@ -141,18 +145,48 @@ app.post('/event', async (req, res, next) => {
 
 });
 
+//registering to an event
+app.put('/events', async (req, res) => {
+    console.log(req.body)
+    var eventID = req.body.eventID;
+
+    var authorization = req.body.authorID;
+    var decoded = jwt.decode(authorization, '123')
+    var author = decoded;
+    var authorID = decoded;
+
+    let event = await postModel.updateOne({ '_id': eventID }, { $addToSet: { 'participants': authorID } }, (err, res) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res;
+        }
+    })
+
+});
+
+app.put('/updateuser', async (req, res) => {
+    console.log(req.body);
+
+    const fcmToken = req.body.fcmToken
+    var authorization = req.body.userToken;
+    var decoded = jwt.decode(authorization, '123')
+    var userID = decoded;
+    let event = await userModel.updateOne({ '_id': userID }, { $addToSet: { 'fcmToken': fcmToken } }, (err, res) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res;
+        }
+    })
+
+})
 
 
-// app.post('/register', auth.register);
-
-// app.post('/login', auth.login);
-
+//middle weare
 app.use('/auth', auth);
 
-// app.listen(app.get('port'), (err, res) => {
-//     console.log("server is running");
-// });
-
+//listening
 app.listen(port, function () {
     console.log('listening on', + port);
 });

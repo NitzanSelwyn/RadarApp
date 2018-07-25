@@ -16,22 +16,31 @@ export class EventDetailsComponent implements OnInit {
 
 
   newEvent = {};
-  authorID = '';
   author = '';
+  authorID = '';
 
   ngOnInit() {
     //gets data from db by event ID
     let id = this.route.snapshot.params.id;
     this.apiService.getEventsDetails(id).subscribe(data => {
       this.newEvent = data;
+      this.authorID = data.author;
 
+      //get the username of the author by his ID
       this.apiService.getUserByID(data.author).subscribe(userName => this.author = userName);
+
+
     });
-    //debugger;
+
 
   }
 
   RegisterToEvent() {
+    //register to the event
+    const authorID = this.apiService.toekn;
+    const eventID = this.route.snapshot.params.id;
+
+    this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
 
   }
 

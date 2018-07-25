@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../api.service";
 import { MessagingService } from "../../Services/messaging.service";
+import { timeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,23 @@ export class LoginComponent {
   userName: String;
   password: String;
   fcmToken;
-  constructor(private msgService: MessagingService, private apiService: ApiService) { }
-  loginUser() {
-    this.fcmToken = this.msgService.getPermission()
+  constructor(private msgService: MessagingService, private apiService: ApiService) {
+    this.msgService.getPermission()
     this.msgService.receiveMessage()
+
+  }
+  loginUser() {
+    this.fcmToken = this.apiService.fcmToken;
+    console.log(this.fcmToken)
+
     // this.msgService = this.msgService.currentMessage
     this.apiService.loginUser({ username: this.userName, password: this.password });
+    setTimeout(() => this.apiService.updateFcmToken({ fcmToken: this.fcmToken, userToken: this.apiService.toekn }), 3000)
+
+
+
+
   }
+
+
 }

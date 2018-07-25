@@ -14,10 +14,12 @@ export class ApiService {
   events = []
 
 
-  TOKEN_KEY = 'token';
+  TOKEN_KEY = environment.TOKEN_KEY;
 
-  authPath = environment.path + '/auth'
+  authPath = environment.authPath;
   path = environment.path;
+
+  userToken;
 
 
   get toekn() {
@@ -26,6 +28,10 @@ export class ApiService {
 
   get isAuthenticated() {
     return !!localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  get fcmToken() {
+    return localStorage.getItem('fcmToken');
   }
 
   registerUser(user) {
@@ -44,6 +50,8 @@ export class ApiService {
   loginUser(user) {
     this.http.post<any>(this.authPath + '/login', user).subscribe(res => {
       localStorage.setItem('token', res.token)
+      this.userToken = localStorage.getItem('token');
+      //debugger;
     });
     if (!this.isAuthenticated) {
       this.route.navigateByUrl("/");
@@ -53,8 +61,15 @@ export class ApiService {
     }
   }
 
+  updateFcmToken(userData) {
+    this.http.put(this.path + '/updateuser', userData).subscribe(res => {
+      console.log(res);
+    })
+  }
+
   logout() {
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem('fcmToken');
   }
 
   getEvents() {
@@ -84,6 +99,13 @@ export class ApiService {
   getUserProfile(token) {
     console.log(token);
     return this.http.get(this.path + '/profile/' + token);
+  }
+
+  registerToEvent(data) {
+    this.http.put(this.path + '/events', data).subscribe(res => {
+      console.log(res);
+    })
+
   }
 
 }
