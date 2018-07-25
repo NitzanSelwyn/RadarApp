@@ -26,8 +26,7 @@ For the database - Becuse I'll host this app on a server like Firebase or AWS S3
 ### Google Maps API - 
 In this project I'm using Google Maps API to: 
  - Find current location of a user I'm using google maps [`Geolocation API`](https://developers.google.com/maps/documentation/geolocation/intro).
- - Styling the map using google maps [`Javascript API`](https://developers.google.com/maps/documentation/javascript/styling)
- 
+ - Styling the map using google maps [`Javascript API`](https://developers.google.com/maps/documentation/javascript/styling).
  -Find address by getting latitude & longitude I'm using [`Geocoding`](https://developers.google.com/maps/documentation/geocoding/intro).
  - Calculating distance between two locations so I can show only the point that are within the sphere im using [`Geometry Library`](https://developers.google.com/maps/documentation/javascript/geometry).
  - Search for a specific location I'm using [`Places Library`](https://developers.google.com/maps/documentation/javascript/places), and so it will autocomplete for the user I'm using [`Place Autocomplete`](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete).
