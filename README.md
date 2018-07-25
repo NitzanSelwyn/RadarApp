@@ -22,6 +22,14 @@ For the client - I used angular mainly to learn and extand my knowledge.
 ## Node.js - 
 For the server - Connect the client to the DB , and to extand my knowledge in web development.
 
+### NPM Used -
+- [`Mongoose`](https://www.npmjs.com/package/mongoose).
+- [`Express`](https://www.npmjs.com/package/express).
+- [`Body-Parser`](https://www.npmjs.com/package/body-parser).
+- [`Cors`](https://www.npmjs.com/package/cors).
+- [`JWT-Simple`](https://www.npmjs.com/package/jwt-simple).
+- [`Bcrypt-NodeJS`](https://www.npmjs.com/package/bcrypt-nodejs).
+
 ### MongoDB -
 For the database - Becuse I'll host this app on a server like Firebase or AWS S3 for the client and HEROKU for the server I'm using [`MongoDB Atlas`](https://cloud.mongodb.com) so my Database is on the cloud
 
