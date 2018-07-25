@@ -12,12 +12,14 @@ Navigate to the RadarAppClient folder and run the command `npm install` after th
 
 # Main Technologies In The Project
 
-### Angular - 
+## Angular - 
 For the client - I used angular mainly to learn and extand my knowledge.  
 
-## Style My Front-End 
+### Styling My Front-End - 
+- For the front-end I used [`Angular Material`]( https://material.angular.io/).
+- For The Google Map I used [`AGM(Angular Google Maps)`](https://angular-maps.com/).
 
-### Node.js - 
+## Node.js - 
 For the server - Connect the client to the DB , and to extand my knowledge in web development.
 
 ### MongoDB -
