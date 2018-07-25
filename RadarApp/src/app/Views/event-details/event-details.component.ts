@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 
 import { MapsAPILoader } from '@agm/core';
 import { } from "@types/googlemaps";
+import { Jsonp } from '@angular/http';
 
 @Component({
   selector: 'app-event-details',
@@ -28,11 +29,12 @@ export class EventDetailsComponent implements OnInit {
       this.newEvent = data;
       this.authorID = data.author;
 
+      // get the author fcmToken
+      this.apiService.getUserFcmToken(data.author).subscribe(fcmToken => this.authorFcmToken = fcmToken);
+
       //get the username of the author by his ID
       this.apiService.getUserByID(data.author).subscribe(userName => this.author = userName);
 
-      // get the author fcmToken
-      this.apiService.getUserFcmToken(data.author).subscribe(fcmToken => this.authorFcmToken = fcmToken);
 
 
     });
@@ -46,15 +48,17 @@ export class EventDetailsComponent implements OnInit {
     const eventID = this.route.snapshot.params.id;
     this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
 
-    this.jsonOfPush = {
-
-      "notification": {
-        "title": "♥♥♥♥",
-        "body": "New Participant",
-      },
-
-      "to": this.authorFcmToken
-    }
+    this.jsonOfPush =
+      {
+        "to": this.authorFcmToken,
+        "collapse_key": "type_a",
+        "data": {
+          "title": "new messages",
+          "score": "5x1",
+          "time": "15:10"
+        }
+      }
+    setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.jsonOfPush), 3000)
 
 
   }

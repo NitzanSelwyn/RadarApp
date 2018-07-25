@@ -48,16 +48,13 @@ router.post('/login', async (req, res) => {
             return res.status(401).send({ message: 'User Name Or Password Is Not Valid' })
         }
 
-        // let payload = { sub: user._id };
         let payload = user._id;
         let token = jwt.encode(payload, '123')
-
 
         res.status(200).send({ token });
     });
 });
 
-
-
+//exporting the auth module
 module.exports = router;
 

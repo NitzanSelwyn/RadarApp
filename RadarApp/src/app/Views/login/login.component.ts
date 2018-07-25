@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from "../../api.service";
 import { MessagingService } from "../../Services/messaging.service";
-import { timeInterval } from 'rxjs/internal/operators/timeInterval';
 
 @Component({
   selector: 'app-login',

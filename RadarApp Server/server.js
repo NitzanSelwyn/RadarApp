@@ -21,7 +21,7 @@ const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationpro
 app.use(cors());
 app.use(bodyparser.json())
 
-//app.set('port', process.env.process || 3000);
+// getting PORT from the enviroment(when hosting on a website like heroku port will be assgin automaticly by the website) or use the defulte 5000
 var port = process.env.PORT || 5000;
 
 //main server
@@ -69,10 +69,11 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
+// get the user FcmToken
 app.get('/users/fcmToken/:id', async (req, res) => {
-
+    console.log(req.params.id)
     try {
-        let user = await userModel.findById(req.params.id, '-password -__v');
+        let user = await userModel.findById(req.params.id);
         fcmToken = user.fcmToken;
         res.send(fcmToken);
     } catch (error) {
@@ -171,12 +172,13 @@ app.put('/events', async (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res;
+            //res;
         }
     })
 
 });
 
+// getting a FcmToken from the client and updateing the current user
 app.put('/updateuser', async (req, res) => {
     console.log(req.body);
 
@@ -193,7 +195,6 @@ app.put('/updateuser', async (req, res) => {
     })
 
 })
-
 
 //middle weare
 app.use('/auth', auth);
