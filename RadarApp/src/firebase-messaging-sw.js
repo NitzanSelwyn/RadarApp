@@ -1,7 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
 
-
+// config is the web configuration got from firebase website
 var config = {
     apiKey: "AIzaSyAtWn-5WkUeM_XlNDekzAIIc5ZM5BJgKac",
     authDomain: "firstfirebaseproject-a45c3.firebaseapp.com",
@@ -10,41 +10,17 @@ var config = {
     storageBucket: "firstfirebaseproject-a45c3.appspot.com",
     messagingSenderId: "236948604143"
 };
-// firebase.initializeApp({
-//     navigator: serviceWorker.register('/firebase-messaging-sw.js')
-//         .then((registration) => {
-//             messaging.useServiceWorker(registration);
 
-//             // Request permission and get token.....
-//             // this.messaging.requestPermission()
-//             //     .then(() => {
-//             //         console.log('Notification permission granted.');
-//             //         return this.messaging.getToken()
-//             //     })
-//             //     .then(token => {
-//             //         console.log(token)
-//             //         this.updateToken(token)
-//             //     })
-//             //     .catch((err) => {
-//             //         console.log('Unable to get permission to notify.', err);
-//             //     });
-//         }),
-//     config,
-// });
-
-// const messaging = firebase.messaging();
-
-
-// firebase.initializeApp({
-//     'messagingSenderId': '236948604143'
-// });
-
+//initializeing firebase 
 firebase.initializeApp({
     'messagingSenderId': '236948604143'
 })
 
+//registering the firebaase messaging with this service worker
 const messaging = firebase.messaging();
+//this is if the website is closed so you can recive notification
 messaging.setBackgroundMessageHandler(function (payload) {
+    //logging that you recived a message
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
     var notificationTitle = 'Background Message Title';

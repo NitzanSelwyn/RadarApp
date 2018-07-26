@@ -15,29 +15,5 @@ export class AppComponent implements OnInit {
 
   constructor(private msgService: MessagingService, private _auth: FirebaseAuthService) { }
 
-  ngOnInit() {
-    // this.msgService.getPermission()
-    this.msgService.receiveMessage()
-    this.message = this.msgService.currentMessage
-  }
-
-  // loginWithGoogle() {
-  //   this._auth.googleLogin().then(() => {
-  //     this.user = this._auth.currentUser;
-
-  //     this.msgService.getPermission();
-  //     this.msgService.receiveMessage();
-  //     this.msgService.currentMessage.subscribe((message) => {
-  //       // debugger;
-  //       this.message = message
-  //     });
-  //   });
-  // }
-
-  // logout() {
-  //   this._auth.signOut().then(() => {
-  //     this.user = null;
-  //   });
-  // }
-
+  ngOnInit() { }
 }

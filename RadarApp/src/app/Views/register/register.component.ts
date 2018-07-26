@@ -14,9 +14,7 @@ export class RegisterComponent implements OnInit {
     this.msgService.receiveMessage()
   }
 
-  ngOnInit() {
-    // this.fcmToken = this.msgService.getPermission();
-  }
+  ngOnInit() { }
   firstname: String;
   lastname: String;
   username: String;
@@ -32,7 +30,7 @@ export class RegisterComponent implements OnInit {
       username: this.username, password: this.password,
       fcmToken: this.fcmToken
     });
-
+    //saveing fcmToken to the user just registerd
     setTimeout(() => this.apiService.updateFcmToken({ fcmToken: this.fcmToken, userToken: this.apiService.toekn }), 5000)
 
   }

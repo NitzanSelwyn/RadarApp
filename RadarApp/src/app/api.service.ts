@@ -71,7 +71,6 @@ export class ApiService {
 
   updateFcmToken(userData) {
     this.http.put(this.path + '/updateuser', userData).subscribe(res => {
-      console.log(res);
     })
   }
 
@@ -85,7 +84,6 @@ export class ApiService {
   getEvents() {
     this.http.get<any>(this.path + '/events').subscribe(res => {
       this.events = res;
-      console.log(res);
     });
   }
 
@@ -98,7 +96,6 @@ export class ApiService {
   createEvents(post) {
     this.http.post<any>(this.path + '/event', post).subscribe(res => {
       this.events = res;
-      console.log(res);
     });
 
   }

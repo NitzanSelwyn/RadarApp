@@ -36,16 +36,20 @@ export class MapComponent implements OnInit {
 
   //Reverse Geocoding To Find "Human" Address
   reverseGeocoding(lat: number, lng: number) {
-
+    //using the geocoder library from google maps api
     let geocoder = new google.maps.Geocoder();
+    //foramting the recived points into a latlng virable
     let latlng = new google.maps.LatLng(lat, lng);
+    //the request must contain a veribale of type location
+    //and the location is the latlng virable above
     let request = {
       location: latlng
     };
     geocoder.geocode(request, (results, status) => {
+      //if the request status was ok
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[0] != null) {
-
+          //formating the address to be full address
           this.city = results[0].formatted_address;
         }
       }
@@ -56,12 +60,13 @@ export class MapComponent implements OnInit {
   //get your corrent position and also the address
   getUserLocation() {
     if (navigator.geolocation) {
+      //getting current latitude & longitude
       navigator.geolocation.getCurrentPosition(position => {
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
         parseFloat(this.lat.toString());
         parseFloat(this.lat.toString());
-
+        //reverseGeocing - turrning the latitude & longitude into a readable address
         this.reverseGeocoding(this.lat, this.lng)
       });
     }
@@ -87,77 +92,21 @@ export class MapComponent implements OnInit {
 
   //Calculateing Distance Between you position to a point from DB
   calculate(lat: any, lng: any): boolean {
-    var origin = new google.maps.LatLng(this.lat, this.lng);//your corrent position
-    // console.log(origin);
-    var destination = new google.maps.LatLng(lat, lng);//positions from DB
-    //console.log(destination);
-    const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);//distance between to locations
+    //your corrent position
+    var origin = new google.maps.LatLng(this.lat, this.lng);
+    //positions from DB
+    var destination = new google.maps.LatLng(lat, lng);
+    //calculating the distance between to your location and locations form DB
+    const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination);
+    //if the distance is smaller then the circle size show the marker
     if (distance < this.circleSize) {
-      //console.log(distance + " From " + this.city);
       return true;
     }
 
   }
 
-
-
 }
 
-
-
-
-
-
-
-
-// interface marker {
-
-//   latitude: number;
-//   longitude: number;
-// }
-
-
-  //calculate Distance using DistanceMatrix
-  // calculate(lat: any, lng: any) {
-  //   var service = new google.maps.DistanceMatrixService();
-  //   var origin = new google.maps.LatLng(this.lat, this.lng);//your corrent position
-  //   var destination = new google.maps.LatLng(lat, lng);//positions from DB
-
-
-  //   service.getDistanceMatrix(
-  //     {
-  //       origins: [origin],
-  //       destinations: [destination],
-  //       travelMode: google.maps.TravelMode.WALKING,
-  //       unitSystem: google.maps.UnitSystem.METRIC,
-  //     }, callback);
-
-  //   function callback(response, status) {
-  //     if (status == 'OK') {
-  //       var origins = response.originAddresses;
-  //       var destinations = response.destinationAddresses;
-
-
-  //       for (var i = 0; i < origins.length; i++) {
-  //         var results = response.rows[i].elements;
-  //         for (var j = 0; j < results.length; j++) {
-  //           var element = results[j];
-  //           var distance = element.distance;
-  //           var duration = element.duration;
-  //           // var from = origins[i];
-  //           // var to = destinations[j];
-  //           // console.log(from + "To: " + to)
-  //           if (distance > 2000) {
-
-  //           }
-  //           console.log("distance is: " + distance + "  duration is: " + duration)
-  //         }
-  //       }
-
-  //     }
-
-  //   }
-  // }
 
 
 

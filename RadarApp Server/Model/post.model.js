@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const user = require('./user.model');
 
+//event MongoDB model
 module.exports = mongoose.model('Event', {
     title: String,
     description: String,

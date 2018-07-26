@@ -16,12 +16,12 @@ export class LoginComponent {
     this.msgService.receiveMessage()
 
   }
+  //loging the user
   loginUser() {
-    this.fcmToken = this.apiService.fcmToken;
-    console.log(this.fcmToken)
-
-    // this.msgService = this.msgService.currentMessage
     this.apiService.loginUser({ username: this.userName, password: this.password });
+    //getting a new fcmToken
+    this.fcmToken = this.apiService.fcmToken;
+    //update current user fcmToken with the new one
     setTimeout(() => this.apiService.updateFcmToken({ fcmToken: this.fcmToken, userToken: this.apiService.toekn }), 3000)
 
 

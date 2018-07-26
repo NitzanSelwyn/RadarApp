@@ -17,16 +17,19 @@ export class EventDetailsComponent implements OnInit {
 
 
   newEvent = {};
-  jsonOfPush = {};
+  jsonToPush = {};
   author = '';
   authorID = '';
   authorFcmToken = '';
 
   ngOnInit() {
-    //gets data from db by event ID
+    //getting the event ID from the URL
     let id = this.route.snapshot.params.id;
+    //gets data from db by event ID
     this.apiService.getEventsDetails(id).subscribe(data => {
+      //saving the recuved data to a local property
       this.newEvent = data;
+      //saving the author ID that was recived with the event data to a local property
       this.authorID = data.author;
 
       // get the author fcmToken
@@ -43,22 +46,26 @@ export class EventDetailsComponent implements OnInit {
   }
 
   RegisterToEvent() {
-    //register to the event
-    const authorID = this.apiService.toekn;
+    //getting the authoe 
+    const currentUserID = this.apiService.toekn;
+    //getting event ID from the URL
     const eventID = this.route.snapshot.params.id;
-    this.apiService.registerToEvent({ authorID: authorID, eventID: eventID })
+    //register to the event
+    this.apiService.registerToEvent({ authorID: currentUserID, eventID: eventID })
 
-    this.jsonOfPush =
+    //push notification json to be sent
+    this.jsonToPush =
       {
+        //you need the author fcmToken so he will recive a notification
         "to": this.authorFcmToken,
         "collapse_key": "type_a",
-        "data": {
-          "title": "new messages",
-          "score": "5x1",
-          "time": "15:10"
+        "notification": {
+          "body": "Test",
+          "title": "Hello World"
         }
       }
-    setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.jsonOfPush), 3000)
+    //sending the json to notification to the author
+    setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.jsonToPush), 5000)
 
 
   }
