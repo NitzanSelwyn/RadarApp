@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, ViewChild, NgZone } from '@angular/core'
 import { FormControl, Validators, FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ApiService } from "../../api.service";
-import { postModel } from "../../Model/post.model";
 import { Time } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -18,7 +17,6 @@ import { } from "@types/googlemaps";
 })
 export class EventComponent implements OnInit {
 
-  public model: postModel;
 
   constructor(private apiService: ApiService, private mapsAPI: MapsAPILoader, private ngZone: NgZone, private route: Router) {
     //this.eventAuthor = this.apiService.toekn;

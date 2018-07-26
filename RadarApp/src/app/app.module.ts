@@ -18,7 +18,6 @@ import { EventComponent } from './Views/event/event.component';
 
 import { ApiService } from "./api.service";
 import { AuthInterceptorService } from "./Services/authinterceptor.service";
-import { AuthService } from './Services/auth.service';
 import { MessagingService } from './Services/messaging.service';
 import * as firebase from 'firebase';
 
@@ -82,7 +81,7 @@ const routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true,
-  }, AuthService, mapstyles, MessagingService, FirebaseAuthService],
+  }, mapstyles, MessagingService, FirebaseAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

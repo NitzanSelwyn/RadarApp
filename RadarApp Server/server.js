@@ -37,9 +37,11 @@ app.get('/', (req, res) => {
 app.get('/events/:id', async (req, res) => {
     try {
         //searching for the event by getting the event ID that was enterd into the URL
-        let event = await postModel.findById(req.params.id);
-        //sending the event to the front-end
-        res.send(event);
+        if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+            let event = await postModel.findById(req.params.id);
+            //sending the event to the front-end
+            res.send(event);
+        }
     } catch (error) {
         //if there was an error log it into console
         console.log(error);
@@ -68,11 +70,13 @@ app.get('/users/:id', async (req, res) => {
     try {
         //getting the user by getting the ID from the entered URL(or more specific by for this by 
         // getting the authur ID fron more details of the event)
-        let user = await userModel.findById(req.params.id, '-password -__v');
-        //gettting the user user name 
-        userToSend = user.username;
-        //sending the user name to front-end
-        res.send(userToSend);
+        if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+            let user = await userModel.findById(req.params.id, '-password -__v');
+            //gettting the user user name 
+            userToSend = user.username;
+            //sending the user name to front-end
+            res.send(userToSend);
+        }
     } catch (error) {
         //if there was an error log it
         console.log(error);
@@ -85,11 +89,13 @@ app.get('/users/:id', async (req, res) => {
 app.get('/users/fcmToken/:id', async (req, res) => {
     try {
         //finding the user by getting the ID fron the enterd URL
-        let user = await userModel.findById(req.params.id);
-        //getting the user fcmToken
-        fcmToken = user.fcmToken;
-        //sending the fcmToken to the front-end  
-        res.send(fcmToken);
+        if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+            let user = await userModel.findById(req.params.id);
+            //getting the user fcmToken
+            fcmToken = user.fcmToken;
+            //sending the fcmToken to the front-end  
+            res.send(fcmToken);
+        }
     } catch (error) {
         //if there was an error log it
         console.log(error);
@@ -129,7 +135,7 @@ app.post('/event', async (req, res, next) => {
     //getting the user token as he post a new event so I 
     //can save his user ID to the DB in the events collection
     var authorization = req.body.author;
-    //decoding the token so it will turn into an ID
+    //decoding the token so it will turn into an Id
     var decoded = jwt.decode(authorization, '123')
     var author = decoded;
 
@@ -144,6 +150,7 @@ app.post('/event', async (req, res, next) => {
     event.address = address;
 
     event.author = author;
+
 
     //saving the new event into the DB
     event.save((err, results) => {
@@ -193,7 +200,7 @@ app.put('/updateuser', async (req, res) => {
     //finding the user by the doceded token & updateing his fcmToken with the one got from the front-end
     let event = await userModel.updateOne({ '_id': userID }, { $Set: { 'fcmToken': fcmToken } }, (err, res) => {
         if (err) {
-            //if there was an error log it
+            //if there was an error log It
             console.log(err);
         } else {
             res;

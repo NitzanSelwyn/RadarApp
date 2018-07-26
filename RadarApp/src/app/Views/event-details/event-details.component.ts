@@ -53,6 +53,14 @@ export class EventDetailsComponent implements OnInit {
     //register to the event
     this.apiService.registerToEvent({ authorID: currentUserID, eventID: eventID })
 
+
+    this.sendNotification();
+
+  }
+
+  sendNotification() {
+    //  debugger;
+    console.log(this.authorFcmToken);
     //push notification json to be sent
     this.jsonToPush =
       {
@@ -66,8 +74,6 @@ export class EventDetailsComponent implements OnInit {
       }
     //sending the json to notification to the author
     setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.jsonToPush), 5000)
-
-
   }
 
 
