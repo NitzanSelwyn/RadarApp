@@ -59,8 +59,6 @@ export class EventDetailsComponent implements OnInit {
   }
 
   sendNotification() {
-    //  debugger;
-    console.log(this.authorFcmToken);
     //push notification json to be sent
     this.jsonToPush =
       {
@@ -72,6 +70,7 @@ export class EventDetailsComponent implements OnInit {
           "title": "Hello World"
         }
       }
+
     //sending the json to notification to the author
     setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.jsonToPush), 5000)
   }

@@ -1,9 +1,11 @@
 <br>
-<mat-chip-list class="mat-chip-list-stacked">
+<mat-chip-list class="mat-chip-list-stacked" *ngFor="let eve of apiService.events">
   <!-- ngFor on all the events that was recived -->
-  <mat-chip *ngFor="let eve of apiService.events" selected [color]="primary" [routerLink]="['/events',eve._id]">
-    <!-- showing only the event title as an mat-chip from angular metirial -->
-    {{eve.title}}
-  </mat-chip>
+  <ng-container>
+    <mat-chip selected color="primary" [routerLink]="['/events',eve._id]">
+      <!-- showing only the event title as an mat-chip from angular metirial -->
+      {{eve.title}}
+    </mat-chip>
+  </ng-container>
 </mat-chip-list>
 <br>

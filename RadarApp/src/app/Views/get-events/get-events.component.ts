@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from "../../api.service";
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-get-events',
@@ -13,6 +14,7 @@ export class GetEventsComponent implements OnInit {
 
   ngOnInit() {
     //gets all events
+    var color: ThemePalette;
     this.apiService.getEvents();
   }
 

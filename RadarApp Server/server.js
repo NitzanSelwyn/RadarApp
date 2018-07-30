@@ -20,7 +20,6 @@ const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationpro
     .catch(err => console.error('Could Not Connect', err));
 
 
-
 app.use(cors());
 app.use(bodyparser.json())
 
@@ -149,7 +148,9 @@ app.post('/event', async (req, res, next) => {
     event.location = location;
     event.address = address;
 
+
     event.author = author;
+
 
 
     //saving the new event into the DB
@@ -211,6 +212,26 @@ app.put('/updateuser', async (req, res) => {
 
 //middle weare
 app.use('/auth', auth);
+
+//Add headers
+app.use((req, res, next) => {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
 
 //listening
 app.listen(port, function () {

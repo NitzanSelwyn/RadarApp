@@ -12,3 +12,5 @@ module.exports = mongoose.model('Event', {
     author: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 });
+
+
