@@ -1,13 +1,21 @@
 <!-- routing to diffrent componenets -->
 <mat-toolbar color="primary">
   <button mat-button routerLink="/">Home</button>
+  <!-- pusing all element from this point to the right -->
   <span style="flex: 1 1 auto"></span>
+  <!-- if there is'nt any token(no one is logged in) show the login button -->
   <button mat-button *ngIf="!apiService.isAuthenticated" routerLink="/login">Login</button>
+  <!-- if there is someone logged in show the log out button -->
   <button mat-button (click)="logout()" *ngIf="apiService.isAuthenticated" routerLink="/">Logout</button>
+  <!-- if there is'nt any one logged in show the register button -->
   <button mat-button *ngIf="!apiService.isAuthenticated" routerLink="/register">Register</button>
+  <!-- if there is some one logged in show the create new event button -->
   <button mat-button *ngIf="apiService.isAuthenticated" routerLink="/event">Create New Event</button>
+  <!-- button fir the all events page -->
   <button mat-button routerLink="/events">See Events</button>
+  <!-- button for the map page -->
   <button mat-button routerLink="/map">Map</button>
 </mat-toolbar>
 
+<!-- show the component corresponde with the current route -->
 <router-outlet></router-outlet>

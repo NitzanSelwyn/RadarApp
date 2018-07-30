@@ -1,9 +1,10 @@
 agm-map {
     height: 300px;
+    widows: 100%;
   }
 
 
-  .example-container {
+  /* .example-container {
     display: flex;
     flex-direction: column;
-  }
+  } */

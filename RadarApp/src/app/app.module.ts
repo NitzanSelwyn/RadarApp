@@ -18,8 +18,8 @@ import { EventComponent } from './Views/event/event.component';
 
 import { ApiService } from "./api.service";
 import { AuthInterceptorService } from "./Services/authinterceptor.service";
-import { AuthService } from './Services/auth.service';
-// import { MessagingService } from './Services/messaging.service';
+import { MessagingService } from './Services/messaging.service';
+import * as firebase from 'firebase';
 
 import { environment } from "../environments/environment";
 import { AngularFireModule } from "angularfire2";
@@ -30,6 +30,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './Views/map/map.component';
 import { GetEventsComponent } from './Views/get-events/get-events.component';
 import { EventDetailsComponent } from './Views/event-details/event-details.component';
+import { FirebaseAuthService } from './services/firebase-auth.service';
 
 import { mapstyles } from "./Views/map/map.style";
 
@@ -39,8 +40,11 @@ const routes = [
   { path: "event", component: EventComponent },
   { path: "map", component: MapComponent },
   { path: "events", component: GetEventsComponent },
-  { path: "events/:id", component: EventDetailsComponent }
+  { path: "events/:id", component: EventDetailsComponent },
 ];
+
+
+
 
 @NgModule({
   imports: [
@@ -56,6 +60,7 @@ const routes = [
     RouterModule.forRoot(routes),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey,
       libraries: ["places", "geometry"],
@@ -76,7 +81,7 @@ const routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true,
-  }, AuthService, mapstyles],
+  }, mapstyles, MessagingService, FirebaseAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
