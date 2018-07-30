@@ -121,7 +121,7 @@ export class ApiService {
 
   //sending push notification to the author of the event that you register to
   sendPushNotificationToAuthor(data) {
-    this.http.post('https://cors.io/?https://fcm.googleapis.com/fcm/send', data, {
+    return this.http.post(this.path + '/notify', data, {
       //headers must contain Authorization key from firebase to be able to send  push notification & and the content type must be 
       //application/json that contain "to": the author of the event and a "notification" that as title & body
       headers: new HttpHeaders()
@@ -131,10 +131,12 @@ export class ApiService {
         .set('Authorization', 'key=AIzaSyDV6hcrbzVzzgp4FIs4G488IZ_NWVjd7xA')
         //content type MUST be application/json
         .set('Content-Type', 'application/json')
-        .set('Access-Control-Allow-Headers', '*')
+        .set('Access-Control-Allow-Headers', 'content-type')
         .set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-
     })
   }
 
 }
+
+
+

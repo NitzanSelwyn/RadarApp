@@ -5,7 +5,6 @@ const app = express();
 const cors = require('cors');
 const jwt = require('jwt-simple');
 
-
 const postModel = require('./Model/post.model')
 const userModel = require('./Model/user.model')
 
@@ -18,7 +17,6 @@ const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationpro
     .then(() => console.log('Connected to MongoDB...'))
     //if connection faild logging the error
     .catch(err => console.error('Could Not Connect', err));
-
 
 app.use(cors());
 app.use(bodyparser.json())
@@ -103,7 +101,6 @@ app.get('/users/fcmToken/:id', async (req, res) => {
     }
 });
 
-
 //get all events
 app.get('/events', async (req, res) => {
     try {
@@ -170,15 +167,11 @@ app.post('/event', async (req, res, next) => {
 
 //registering to an event
 app.put('/events', async (req, res) => {
+
     //getting the event ID
     var eventID = req.body.eventID;
-
-    //getting the token of the user that wants to register to the specific event
-    var authorization = req.body.currentUserID;
-    //decodeing the token to be turn into user ID
-    var decoded = jwt.decode(authorization, '123')
-    var userID = decoded;
-
+    //getting the User ID
+    var userID = req.body.currentUserID;
     //updating the event with the ID got from the front-end & adding the user ID that wants to be register to this event into
     //the participants field
     let event = await postModel.updateOne({ '_id': eventID }, { $addToSet: { 'participants': userID } }, (err, res) => {
@@ -210,33 +203,65 @@ app.put('/updateuser', async (req, res) => {
 
 })
 
-//middle weare
-app.use('/auth', auth);
+app.post('/notify', (req, res) => {
 
-//Add headers
-app.use((req, res, next) => {
+    var headers = {
+        'Authorization': 'key=AIzaSyDV6hcrbzVzzgp4FIs4G488IZ_NWVjd7xA',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    }
+    var options = {
+        url: 'https://fcm.googleapis.com/fcm/send',
+        method: 'POST',
+        headers: headers,
+        body: {
+            "to": req.body.authorFcmToken,
+            "collapse_key": "type_a",
+            "notification": {
+                "body": "Test",
+                "title": "Hello World"
+            }
+        }
+    }
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
+    http.request(options, (error, response, body) => {
+        if (!error && response.statusCode == 200) {
+            // Print out the response body
+            res.send(response);
+        }
+    })
 });
+
+//middle weare
+app.use('/auth', auth)
 
 //listening
 app.listen(port, function () {
     //loging if the server was successfully running & and logging one wich port
     console.log('listening on', + port);
 });
+
+
+//Add headers
+// app.use((req, res, next) => {
+
+//     // Website you wish to allow to connect
+//     res.setHeader('Access-Control-Allow-Origin', 'https://fcm.googleapis.com/fcm/send');
+
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+//     // Request headers you wish to allow
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+
+//     // Pass to next layer of middleware
+//     next();
+// });
+
+//app.options("*", cors(options));
 
 

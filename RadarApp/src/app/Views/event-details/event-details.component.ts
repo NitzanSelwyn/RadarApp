@@ -46,7 +46,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   RegisterToEvent() {
-    //getting the authoe 
+    //getting the author
     const currentUserID = this.apiService.toekn;
     //getting event ID from the URL
     const eventID = this.route.snapshot.params.id;
@@ -72,7 +72,7 @@ export class EventDetailsComponent implements OnInit {
       }
 
     //sending the json to notification to the author
-    setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.jsonToPush), 5000)
+    setTimeout(() => this.apiService.sendPushNotificationToAuthor(this.authorFcmToken), 5000)
   }
 
 
