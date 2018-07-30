@@ -22,7 +22,7 @@ For the client - I used angular mainly to learn and extand my knowledge.
 ## Node.js - 
 For the server - Connect the client to the DB , and to extand my knowledge in web development.
 
-### NPM Used -
+### NPM Used In The Server -
 - [`Mongoose`](https://www.npmjs.com/package/mongoose)
 - [`Express`](https://www.npmjs.com/package/express)
 - [`Body-Parser`](https://www.npmjs.com/package/body-parser)
@@ -40,6 +40,12 @@ In this project I'm using Google Maps API to:
  - Find address by getting latitude & longitude I'm using [`Geocoding`](https://developers.google.com/maps/documentation/geocoding/intro)
  - Calculating distance between two locations so I can show only the point that are within the sphere im using [`Geometry Library`](https://developers.google.com/maps/documentation/javascript/geometry)
  - Search for a specific location I'm using [`Places Library`](https://developers.google.com/maps/documentation/javascript/places), and so it will autocomplete for the user I'm using [`Place Autocomplete`](https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete)
+ 
+ ### Firebase & Heroku
+ To host this project for mobile user i choose [`Firebase`](https://firebase.google.com/) for my client and [`Heroku`](https://www.heroku.com/) for my server.
+ 
+ ## Push Notification 
+ - In this project I wanted to implement push notifications, every time a user registeriing to an event the author of that event will recive a notification. I used  [`Firebase Cloud Messaging`](https://firebase.google.com/docs/cloud-messaging/)
  
 
 
