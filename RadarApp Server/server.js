@@ -5,9 +5,6 @@ const app = express();
 const cors = require('cors');
 const jwt = require('jwt-simple');
 
-const postModel = require('./Model/post.model')
-const userModel = require('./Model/user.model')
-
 const auth = require('./Auth/auth')
 
 //connection to MongoDB Atlas, by getting the connection string from Atlas. 
@@ -32,60 +29,6 @@ app.get('/', (req, res) => {
 
 
 
-
-
-
-
-// getting a FcmToken from the client and updateing the current user
-app.put('/updateuser', async (req, res) => {
-    //getting the user new fcmToken
-    const fcmToken = req.body.fcmToken
-    //getting the user token
-    var authorization = req.body.userToken;
-    //decodeing the user token
-    var decoded = jwt.decode(authorization, '123')
-    var userID = decoded;
-    //finding the user by the doceded token & updateing his fcmToken with the one got from the front-end
-    let event = await userModel.updateOne({ '_id': userID }, { $Set: { 'fcmToken': fcmToken } }, (err, res) => {
-        if (err) {
-            //if there was an error log It
-            console.log(err);
-        } else {
-            res;
-        }
-    })
-
-})
-
-//sending push notification
-app.post('/notify', (req, res) => {
-
-    var headers = {
-        'Authorization': 'key=AIzaSyDV6hcrbzVzzgp4FIs4G488IZ_NWVjd7xA',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-    }
-    var options = {
-        url: 'https://fcm.googleapis.com/fcm/send',
-        method: 'POST',
-        headers: headers,
-        body: {
-            "to": req.body.authorFcmToken,
-            "collapse_key": "type_a",
-            "notification": {
-                "body": "Test",
-                "title": "Hello World"
-            }
-        }
-    }
-
-    http.request(options, (error, response, body) => {
-        if (!error && response.statusCode == 200) {
-            // Print out the response body
-            res.send(response);
-        }
-    })
-});
 
 //middle weare
 app.use('/auth', auth)
