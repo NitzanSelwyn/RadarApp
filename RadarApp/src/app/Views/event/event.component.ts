@@ -93,7 +93,6 @@ export class EventComponent implements OnInit {
       address: this.address,
       // sending the author token to be decoded back to user ID in the server
       author: this.apiService.toekn
-
     });
     //navigating to main page
     this.route.navigateByUrl("/");

@@ -171,7 +171,10 @@ app.put('/events', async (req, res) => {
     //getting the event ID
     var eventID = req.body.eventID;
     //getting the User ID
-    var userID = req.body.currentUserID;
+    var authorization = req.body.currentUserID;
+    //decodeing the user token
+    var decoded = jwt.decode(authorization, '123')
+    var userID = decoded;
     //updating the event with the ID got from the front-end & adding the user ID that wants to be register to this event into
     //the participants field
     let event = await postModel.updateOne({ '_id': eventID }, { $addToSet: { 'participants': userID } }, (err, res) => {
@@ -203,6 +206,7 @@ app.put('/updateuser', async (req, res) => {
 
 })
 
+//sending push notification
 app.post('/notify', (req, res) => {
 
     var headers = {
@@ -235,33 +239,31 @@ app.post('/notify', (req, res) => {
 //middle weare
 app.use('/auth', auth)
 
+//Add headers
+app.use((req, res, next) => {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,authorization');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
+
 //listening
 app.listen(port, function () {
     //loging if the server was successfully running & and logging one wich port
     console.log('listening on', + port);
 });
 
-
-//Add headers
-// app.use((req, res, next) => {
-
-//     // Website you wish to allow to connect
-//     res.setHeader('Access-Control-Allow-Origin', 'https://fcm.googleapis.com/fcm/send');
-
-//     // Request methods you wish to allow
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//     // Request headers you wish to allow
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-//     // Set to true if you need the website to include cookies in the requests sent
-//     // to the API (e.g. in case you use sessions)
-//     res.setHeader('Access-Control-Allow-Credentials', true);
-
-//     // Pass to next layer of middleware
-//     next();
-// });
-
-//app.options("*", cors(options));
 
 
