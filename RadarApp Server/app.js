@@ -6,6 +6,7 @@ const jwt = require('jwt-simple');
 
 const userRoutes = require('./routes/userRouter');
 const eventRoutes = require('./routes/eventRouter');
+const notificationRoutes = require('./routes/notificationsRouter')
 
 const auth = require('./Auth/auth')
 
@@ -34,8 +35,9 @@ app.get('/', (req, res) => {
 
 //middle weare
 app.use('/auth', auth)
-app.use('/api/user', userRoutes);
-app.use('/api/event', eventRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/notifications', notificationRoutes)
 
 //Add headers
 app.use((req, res, next) => {

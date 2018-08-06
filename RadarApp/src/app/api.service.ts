@@ -94,7 +94,7 @@ export class ApiService {
 
   //creating new event by sending all the fields from the create event tap to the server to be saved to the DB
   createEvents(post) {
-    this.http.post<any>(this.path + '/event', post).subscribe(res => {
+    this.http.post<any>(this.path + '/events', post).subscribe(res => {
       this.events = res;
     });
 

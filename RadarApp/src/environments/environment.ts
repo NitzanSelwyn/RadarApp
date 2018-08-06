@@ -16,7 +16,7 @@ export const environment = {
   googleMapsKey: 'AIzaSyDHa-IemARHxYO0qdoZPKpxHOlX-1r9KG8',
 
   //path to the node.js server hosted on heroku
-  path: "https://herokulocationservice.herokuapp.com",
+  path: "https://herokulocationservice.herokuapp.com/api",
   authPath: "https://herokulocationservice.herokuapp.com/auth",
   //path to the node.js server hosted localy
   // path: "http://localhost:5000",
