@@ -1,7 +1,7 @@
 const http = require("http");
 
 //sending push notification
-exports.PostNotification((req, res) => {
+exports.PostNotification = (req, res) => {
 
     var headers = {
         'Authorization': 'key=AIzaSyDV6hcrbzVzzgp4FIs4G488IZ_NWVjd7xA',
@@ -28,4 +28,4 @@ exports.PostNotification((req, res) => {
             res.send(response);
         }
     })
-});
+};

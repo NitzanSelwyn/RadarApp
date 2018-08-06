@@ -1,8 +1,8 @@
-const postModel = require('../models/event');
+const postModel = require('../Model/post.model');
 
 
 //get event by id for more details
-exports.GetEventByID(async (req, res) => {
+exports.GetEventByID = (async (req, res) => {
     try {
         //searching for the event by getting the event ID that was enterd into the URL
         if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -19,7 +19,7 @@ exports.GetEventByID(async (req, res) => {
 });
 
 //get all events
-exports.GetAllEvents(async (req, res) => {
+exports.GetAllEvents = (async (req, res) => {
     try {
         //getting all the events from DB
         let events = await postModel.find({});
@@ -34,7 +34,7 @@ exports.GetAllEvents(async (req, res) => {
 });
 
 //creat new event
-exports.CreatNewEvent(async (req, res, next) => {
+exports.CreatNewEvent = (async (req, res, next) => {
 
     //getting the info for the new event from the front-end
     const title = req.body.title;
@@ -83,7 +83,7 @@ exports.CreatNewEvent(async (req, res, next) => {
 });
 
 //registering to an event
-exports.RegisterToAnEvent(async (req, res) => {
+exports.RegisterToAnEvent = (async (req, res) => {
 
     //getting the event ID
     var eventID = req.body.eventID;

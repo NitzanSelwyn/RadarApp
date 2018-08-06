@@ -15,6 +15,7 @@ router.get('/:id', EventController.GetEventByID);
 //get all events
 router.get('', EventController.GetAllEvents);
 
+// registering to an event
 router.put('', EventController.RegisterToAnEvent)
 
 

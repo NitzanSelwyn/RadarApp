@@ -1,10 +1,9 @@
-const bcrypt = require("bcrypt");
 const jwt = require('jwt-simple');
 
-const userModel = require("../models/user");
+const userModel = require('../Model/user.model');
 
 //gets all user without password
-exports.GetAllUsers(async (req, res) => {
+exports.GetAllUsers = (async (req, res) => {
     try {
         //getting all the users but the passsword
         let users = await userModel.find({}, '-password -__v');
@@ -19,7 +18,7 @@ exports.GetAllUsers(async (req, res) => {
 });
 
 //get user by id and send his user name without password
-exports.GetUsersByID(async (req, res) => {
+exports.GetUsersByID = (async (req, res) => {
     try {
         //getting the user by getting the ID from the entered URL(or more specific by for this by 
         // getting the authur ID fron more details of the event)
@@ -39,7 +38,7 @@ exports.GetUsersByID(async (req, res) => {
 });
 
 // get the user FcmToken
-exports.GetUserFCMToken(async (req, res) => {
+exports.GetUserFCMToken = (async (req, res) => {
     try {
         //finding the user by getting the ID fron the enterd URL
         if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -58,7 +57,7 @@ exports.GetUserFCMToken(async (req, res) => {
 });
 
 // getting a FcmToken from the client and updateing the current user
-exports.UpdateUserFCMToken(async (req, res) => {
+exports.UpdateUserFCMToken = (async (req, res) => {
     //getting the user new fcmToken
     const fcmToken = req.body.fcmToken
     //getting the user token

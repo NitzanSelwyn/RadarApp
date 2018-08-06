@@ -19,7 +19,7 @@ export const environment = {
   path: "https://herokulocationservice.herokuapp.com/api",
   authPath: "https://herokulocationservice.herokuapp.com/auth",
   //path to the node.js server hosted localy
-  // path: "http://localhost:5000",
+  // path: "http://localhost:5000/api",
   // authPath: "http://localhost:5000/auth",
 
   TOKEN_KEY: "token",

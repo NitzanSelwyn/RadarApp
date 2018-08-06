@@ -33,12 +33,6 @@ app.get('/', (req, res) => {
 });
 
 
-//middle weare
-app.use('/auth', auth)
-app.use('/api/users', userRoutes);
-app.use('/api/events', eventRoutes);
-app.use('/api/notifications', notificationRoutes)
-
 //Add headers
 app.use((req, res, next) => {
 
@@ -59,8 +53,16 @@ app.use((req, res, next) => {
     next();
 });
 
+//middle weare
+app.use('/auth', auth)
+app.use('/api/users', userRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/notifications', notificationRoutes)
+
+
+
 module.exports = app;
-;
+
 
 
 
