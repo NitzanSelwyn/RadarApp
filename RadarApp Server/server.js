@@ -1,63 +1,48 @@
-const mongoose = require('mongoose');
-const express = require('express');
-const bodyparser = require('body-parser')
-const app = express();
-const cors = require('cors');
-const jwt = require('jwt-simple');
+const app = require("./app");
+const http = require("http");
 
-const auth = require('./Auth/auth')
+// Create Server
+const normalizePort = val => {
+    var port = parseInt(val, 10);
 
-//connection to MongoDB Atlas, by getting the connection string from Atlas. 
-//the connection string must contain user name & password of the admin or a user that can edit in the DB
-const db = mongoose.connect('mongodb+srv://nitzanSelwyn:123nitzan123@locationproject-vh41z.mongodb.net/test')
-    //if connected successfully logging 
-    .then(() => console.log('Connected to MongoDB...'))
-    //if connection faild logging the error
-    .catch(err => console.error('Could Not Connect', err));
+    if (isNaN(port)) {
+        return val;
+    }
 
-app.use(cors());
-app.use(bodyparser.json())
+    if (port >= 0) {
+        return port;
+    }
+    return false;
+};
 
-// getting PORT from the enviroment(when hosting on a website like heroku port will be assgin automaticly by the website) or use the defulte 5000
-var port = process.env.PORT || 5000;
+const onError = error => {
+    if (error.syscall !== "listen") {
+        throw error;
+    }
+    const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+    switch (error.code) {
+        case "EACCES":
+            console.error(bind + " requires elevated privileges");
+            process.exit(1);
+            break;
+        case "EADDRINUSE":
+            console.error(bind + " is already in use");
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+};
 
-//main server
-app.get('/', (req, res) => {
-    //if rech the main directory of the server sending a message
-    res.send('This is the SERVER');
-});
+const onListening = () => {
+    const addr = server.address();
+    const bind = typeof addr === "string" ? "pipe " + addr : "port " + port;
+};
 
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
 
-
-
-//middle weare
-app.use('/auth', auth)
-
-//Add headers
-app.use((req, res, next) => {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,authorization');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
-//listening
-app.listen(port, function () {
-    //loging if the server was successfully running & and logging one wich port
-    console.log('listening on', + port);
-});
-
-
-
+const server = http.createServer(app);
+server.on("error", onError);
+server.on("listening", onListening);
+server.listen(port);

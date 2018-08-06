@@ -19,7 +19,7 @@ exports.GetAllUsers(async (req, res) => {
 });
 
 //get user by id and send his user name without password
-exports.GetAllUsersByID(async (req, res) => {
+exports.GetUsersByID(async (req, res) => {
     try {
         //getting the user by getting the ID from the entered URL(or more specific by for this by 
         // getting the authur ID fron more details of the event)
