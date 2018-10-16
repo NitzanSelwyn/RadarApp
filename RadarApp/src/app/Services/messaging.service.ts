@@ -51,7 +51,6 @@ export class MessagingService {
       });
   }
 
-
   //getting a new notification
   receiveMessage() {
     //registering to OnMessage
